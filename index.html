@@ -8,34 +8,58 @@
     <title>Faculty Management System</title>
 </head>
 <body>
+  
 <div class="sidebar">
-  <div class="dropdown">
-    <button onclick="toggleDropdown()" class="dropbtn">
-      <h4>Faculty</h4>
-      <svg id="arrowIcon" class="arrow-icon" viewBox="0 0 24 24">
-        <path fill="white" d="M7 10l5 5 5-5z"/>
-      </svg>
-    </button>
-    <div class="dropdown-content" id="myDropdown">
-      <a href="#">Profile Status</a>
-      <a href="#">Subject Load Tracker</a>
-      <a href="#">Schedule Assignment</a>
-      <a href="#">Attendance Monitoring</a>
-      <a href="#">Leave Application & Approval</a>
-      <a href="#">Salary Grade & Pay Setup</a>
-      <a href="#">Teaching History</a>
-      <a href="#">Clearance System</a>
-      <a href="#">Evaluation Summary</a>
-      <a href="#">Faculty Directory</a>
-    </div>
-  </div>
+ 
 </div>
 
 
 
-  <div class="main">
-       <h1>Welcome to the Faculty Management System</h1>
-       <p>This is the main content area.</p>
+<section id="profile-status">
+   
+
+  
+  <div class="container1">
+    <h2>Add New Position</h2>
+    <div class="form-group">
+      <label for="position">Position Title</label>
+      <input type="text" id="position" required>
+    </div>
+    <div class="form-group">
+      <label for="salaryGrade">Salary Grade</label>
+      <input type="number" id="salaryGrade" required>
+    </div>
+    <div class="form-group">
+      <label for="monthlySalary">Monthly Salary</label>
+      <input type="number" id="monthlySalary" required>
+    </div>
+    <div class="form-group">
+      <label for="effectiveDate">Effective Date</label>
+      <input type="date" id="effectiveDate" required>
+    </div>
+    <button onclick="addPosition()">Add Position</button>
   </div>
+
+  
+  <div class="container2">
+    <h2>Position List</h2>
+    <table id="positionTable">
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Salary Grade</th>
+          <th>Monthly Salary</th>
+          <th>Employment Type</th>
+          <th>Effective Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="positionBody">
+       
+      </tbody>
+    </table>
+ </div>
+
+</section>
 </body>
 </html>
