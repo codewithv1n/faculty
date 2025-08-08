@@ -1,13 +1,8 @@
  function toggleDropdown() {
-      document.querySelector(".dropdown").classList.toggle("show");
-    }
+    const dropdown = document.getElementById("myDropdown");
+    const arrow = document.getElementById("arrowIcon");
 
-   
-    window.onclick = function(event) {
-      if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown");
-        for (let i = 0; i < dropdowns.length; i++) {
-          dropdowns[i].classList.remove('show');
-        }
-      }
-    }
+    const isOpen = dropdown.style.display === "block";
+    dropdown.style.display = isOpen ? "none" : "block";
+    arrow.classList.toggle("rotate", !isOpen);
+  }
