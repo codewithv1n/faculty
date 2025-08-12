@@ -13,7 +13,7 @@
       const grade = document.getElementById("salaryGrade").value;
       const salary = document.getElementById("monthlySalary").value;
       const effectiveDate = document.getElementById("effectiveDate").value;
-
+      
       if (!position || !grade || !salary || !effectiveDate) {
         alert("Please fill out all fields.");
         return;
