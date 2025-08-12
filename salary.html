@@ -67,8 +67,9 @@
 
 
 
-     <div class="container1">
-    <h2>Add New Position </h2>
+<div class="main-content">
+  <div class="container1">
+    <h2>Add New Position</h2>
     <div class="form-group">
       <label for="position">Position Title</label>
       <input type="text" id="position" required>
@@ -82,13 +83,16 @@
       <input type="number" id="monthlySalary" required>
     </div>
     <div class="form-group">
+      <label for="employmentType">Employment Type (ex. fulltime, part-time, intern)</label>
+      <input type="text" id="employmentType" required>
+    </div>
+    <div class="form-group">
       <label for="effectiveDate">Effective Date</label>
       <input type="date" id="effectiveDate" required>
     </div>
     <button onclick="addPosition()">Add Position</button>
   </div>
 
-  
   <div class="container2">
     <h2>Position List</h2>
     <table id="positionTable">
@@ -103,9 +107,10 @@
         </tr>
       </thead>
       <tbody id="positionBody">
-       
       </tbody>
     </table>
- </div>
+  </div>
+</div>
+
 </body>
 </html>

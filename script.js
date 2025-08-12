@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    // Animate stats counters
+    
     const stats = document.querySelectorAll('.stat-card .value');
     stats.forEach(stat => {
         const target = parseInt(stat.textContent);
