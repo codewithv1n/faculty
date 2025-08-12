@@ -1,0 +1,111 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Management System</title>
+    <link rel="stylesheet" href="salarycss.css">
+    <script src="salaryfunctions.js" defer></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Faculty Management</h2>
+            <p>Administrator Dashboard</p>
+        </div>
+        
+        <div class="menu">
+            <a href="#" class="menu-item active">
+                <span class="menu-icon">📊</span>
+                <span class="menu-text">Dashboard</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">👤</span>
+                <span class="menu-text">Faculty Profile</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">📚</span>
+                <span class="menu-text">Subject Load Tracker</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">📅</span>
+                <span class="menu-text">Schedule Assignment</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">✅</span>
+                <span class="menu-text">Attendance Monitoring</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">🏖️</span>
+                <span class="menu-text">Leave Application</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">💰</span>
+                <span class="menu-text">Salary Grade & Pay</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">🏫</span>
+                <span class="menu-text">Teaching History</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">📝</span>
+                <span class="menu-text">Clearance System</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">⭐</span>
+                <span class="menu-text">Evaluation Summary</span>
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">📋</span>
+                <span class="menu-text">Faculty Directory</span>
+            </a>
+        </div>
+    </div>
+
+    <button id="toggleSidebar" class="toggle-btn">☰</button>
+
+
+
+     <div class="container1">
+    <h2>Add New Position</h2>
+    <div class="form-group">
+      <label for="position">Position Title</label>
+      <input type="text" id="position" required>
+    </div>
+    <div class="form-group">
+      <label for="salaryGrade">Salary Grade</label>
+      <input type="number" id="salaryGrade" required>
+    </div>
+    <div class="form-group">
+      <label for="monthlySalary">Monthly Salary</label>
+      <input type="number" id="monthlySalary" required>
+    </div>
+    <div class="form-group">
+      <label for="effectiveDate">Effective Date</label>
+      <input type="date" id="effectiveDate" required>
+    </div>
+    <button onclick="addPosition()">Add Position</button>
+  </div>
+
+  
+  <div class="container2">
+    <h2>Position List</h2>
+    <table id="positionTable">
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Salary Grade</th>
+          <th>Monthly Salary</th>
+          <th>Employment Type</th>
+          <th>Effective Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="positionBody">
+       
+      </tbody>
+    </table>
+ </div>
+</body>
+</html>
