@@ -232,17 +232,18 @@ body {
 .main-content {
   margin-left: 260px; 
   padding: 10px;
+  position: relative;
 }
 
 
 .container1 {
   background-color: #fff;
-  margin-left: 230px;
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  max-width: 100vh;
-  margin-bottom: 20px;
+  width: 570px;       
+  max-width: none;   
+  margin-bottom: 10px;
 }
 
 
@@ -256,7 +257,21 @@ body {
 }
 
 
-.container1 h2, .container2 h2 {
+.container3 {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 10px;
+  width: 450px;       
+  max-width: none;    
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-left: 0; 
+  position: absolute;
+  top: 0;         
+  left: calc(100% - 470px); 
+  margin-top: 20px;
+}
+
+.container1 h2, .container2 h2, .container3 h2 {
   font-size: 20px;
   margin-bottom: 15px;
   font-weight: 500;
