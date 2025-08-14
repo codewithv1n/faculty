@@ -1,4 +1,39 @@
- <!DOCTYPE html>
+<?php
+$host = "localhost";
+$username = "root";
+$password = "";
+$dbname = "salary_db";
+
+$conn = new mysqli($host, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $job_position = $_POST['position'];
+    $pay_level = $_POST['payLevel'];
+    $monthly_salary = $_POST['monthlySalary'];
+    $employment_type = $_POST['employmentType'];
+    $effective_date = $_POST['effectiveDate'];
+
+    $stmt = $conn->prepare("INSERT INTO positions (job_position, pay_level, monthly_salary, employment_type, effective_date) 
+                             VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sdsss", $job_position, $pay_level, $monthly_salary, $employment_type, $effective_date);
+
+    if ($stmt->execute()) {
+        echo "success";
+    } else {
+        echo "Database error: " . $stmt->error;
+    }
+    $stmt->close();
+    exit; 
+}
+
+?>
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +43,7 @@
     <script src="salaryfunctions.js" defer></script>
 </head>
 <body>
-    <!-- Sidebar -->
+    
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h2>Faculty Management</h2>
@@ -68,30 +103,33 @@
 
 
 <div class="main-content">
-  <div class="container1">
+  <form action="salary.php" method="POST">
+    <div class="container1">
     <h2>Add New Position</h2>
     <div class="form-group">
       <label for="position">Job Position</label>
-      <input type="text" id="position" required>
+      <input type="text"name="position" required>
     </div>
     <div class="form-group">
-      <label for="salaryGrade">Pay Level</label>
-      <input type="number" id="salaryGrade" required>
+      <label for="payLevel">Pay Level</label>
+      <input type="number"  name="payLevel" required>
     </div>
     <div class="form-group">
-      <label for="monthlySalary">Monthly Salary (required charges applied)</label>
-      <input type="number" id="monthlySalary" required>
+      <label for="monthlySalary">Monthly Salary (required charges must applied)</label>
+      <input type="number"  name="monthlySalary" required>
     </div>
     <div class="form-group">
       <label for="employmentType">Employment Type (ex. fulltime, part-time, intern, contractual)</label>
-      <input type="text" id="employmentType" required>
+      <input type="text"  name="employmentType" required>
     </div>
     <div class="form-group">
       <label for="effectiveDate">Effective Date</label>
-      <input type="date" id="effectiveDate" required>
+      <input type="date"  name="effectiveDate" required>
     </div>
-    <button onclick="addPosition()">Add Position</button>
+    <button type="submit">Add Position</button>
   </div>
+  </form>
+
 
  
   <div class="container3">
@@ -138,7 +176,7 @@
 
   <div class="container2">
     <h2>Position List</h2>
-    <table id="positionTable">
+    <table>
       <thead>
         <tr>
           <th>Job Position</th>
@@ -149,7 +187,7 @@
           <th>Action</th>
         </tr>
       </thead>
-      <tbody id="positionBody">
+      <tbody class="positionBody">
       </tbody>
     </table>
   </div>
