@@ -336,12 +336,12 @@ button:hover {
 
 #positionTable {
   width: 100%;
-  border-collapse: collapse;
+    border-collapse: separate;
   font-size: 14px;
 }
 
 th, td {
-  padding: 12px 15px;
+  padding: 15px 15px;
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
