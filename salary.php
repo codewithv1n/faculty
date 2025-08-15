@@ -97,10 +97,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </a>
         </div>
     </div>
-
+  <button id="toggleSidebar" class="toggle-btn">☰</button>
    
-
-
 
 <div class="main-content">
   <form action="salary.php" method="POST">
