@@ -1,3 +1,20 @@
+ document.addEventListener("DOMContentLoaded", () => {
+            const sidebar = document.querySelector(".sidebar");
+            const toggleSidebarBtn = document.getElementById("toggleSidebar");
+            const logoutBtn = document.querySelector(".logout_btn");
+        
+          
+            sidebar.classList.add("open");
+        
+           
+            if (toggleSidebarBtn && sidebar) {
+                toggleSidebarBtn.addEventListener("click", () => {
+                    sidebar.classList.toggle("open");
+                });
+            }
+});
+
+
 document.querySelector("form").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -49,7 +66,10 @@ function loadPositions() {
                     <td>₱${row.monthly_salary}</td>
                     <td>${row.employment_type}</td>
                     <td>${row.effective_date}</td>
-                    <td><button class="delete-btn" data-id="${row.id}">Delete</button></td>
+                   <td style="white-space: nowrap; text-align: center; padding: 8px;">
+                        <button class="change-btn" data-id="${row.id}" style="padding: 8px 12px; margin: 0 3px; font-size: 12px; border: none; border-radius: 4px; cursor: pointer;">Edit</button>
+                        <button class="delete-btn" data-id="${row.id}" style="padding: 8px 12px; margin: 0 3px; font-size: 12px; border: none; border-radius: 4px; cursor: pointer;">Delete</button>
+                    </td>
                 </tr>
             `;
         });
