@@ -240,7 +240,7 @@ body {
   background-color: #fff;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
   width: 570px;       
   max-width: none;   
   margin-bottom: 10px;
@@ -251,9 +251,14 @@ body {
   background-color: #fff;
   border-radius: 12px;
   padding: 25px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  width: 105%;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+  width: 100%;
   overflow-x: auto;
+}
+
+.container2 table {
+  width: 100%;
+  border-collapse: collapse; 
 }
 
 
@@ -263,7 +268,7 @@ body {
   padding: 10px;
   width: 550px;       
   max-width: none;    
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
   margin-left: 0; 
   position: absolute;
   top: 0;         
@@ -274,7 +279,6 @@ body {
 .container1 h2, .container2 h2, .container3 h2 {
   font-size: 20px;
   margin-bottom: 15px;
-  margin:1;
   font-weight: 500;
   color: #2c3e50;
 }
@@ -335,13 +339,13 @@ button:hover {
 
 
 #positionTable {
-  width: 100%;
-    border-collapse: separate;
+  width: 100%;  
+  border-collapse: separate;
   font-size: 14px;
 }
 
 th, td {
-  padding: 15px 15px;
+  padding: 10px 15px;
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
