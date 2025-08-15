@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         
         <div class="menu">
-            <a href="#" class="menu-item active">
+            <a href="#" class="menu-item">
                 <span class="menu-icon">📊</span>
                 <span class="menu-text">Dashboard</span>
             </a>
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <span class="menu-icon">🏖️</span>
                 <span class="menu-text">Leave Application</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="#" class="menu-item active">
                 <span class="menu-icon">💰</span>
                 <span class="menu-text">Salary Grade & Pay</span>
             </a>
@@ -102,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="main-content">
   <form action="salary.php" method="POST">
+    <div class="salarytitle"> <h1>Salary Grade & Pay</h1></div>
     <div class="container1">
     <h2>Add New Position</h2>
     <div class="form-group">
@@ -174,6 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <div class="container2">
     <h2>Position List</h2>
+    <button class="print-btn" id="printBtn">Print</button>
     <table>
       <thead>
         <tr>
