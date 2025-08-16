@@ -29,9 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     exit; 
 }
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="salaryfunctions.js" defer></script>
 </head>
 <body>
-    
+
+     <div class="container">
+        <!-- Sidebar (hidden by default on mobile) -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h2>Faculty Management</h2>
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <span class="menu-icon">📊</span>
                 <span class="menu-text">Dashboard</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="facultyProfile.html" class="menu-item">
                 <span class="menu-icon">👤</span>
                 <span class="menu-text">Faculty Profile</span>
             </a>
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <span class="menu-icon">📅</span>
                 <span class="menu-text">Schedule Assignment</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="attendance.html" class="menu-item ">
                 <span class="menu-icon">✅</span>
                 <span class="menu-text">Attendance Monitoring</span>
             </a>
@@ -96,8 +96,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <span class="menu-text">Faculty Directory</span>
             </a>
         </div>
+        <div class="logout-container">
+            <a href="Login/Login.html" class="logout-btn">
+                <span class="menu-icon">🚪</span>
+                <span class="menu-text">Log out</span>
+            </a>
+        </div>
     </div>
-  <button id="toggleSidebar" class="toggle-btn">☰</button>
+<button id="toggleSidebar" class="toggle-btn">☰</button>
    
 
 <div class="main-content">
@@ -131,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
  
-  <div class="container3">
+<div class="container3">
     <h2>Legend</h2>
     <table>
       <thead>
@@ -169,7 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </tr>
       </tbody>
     </table>
-  </div>
+</div>
 
 
 
