@@ -4,35 +4,40 @@
     --secondary-color: #2980b9;
     --light-color: #ecf0f1;
     --dark-color: #34495e;
-    --gray-color: #95a5a7;
+    --gray-color: #95a5a6;
+    --primary: #3498db;
 }
 
-* {
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
 }
 
+.container {
+    display: flex;
+    min-height: 30vh;
+}
 
 /* Sidebar Styles */
 .sidebar {
     width: 250px;
     background-color: var(--sidebar-color);
     color: white;
-    padding: 20px 0;
-    height: 100vh;
-    position: fixed;
-    transform: translateX(-250px); /* Hide sidebar by default */
-    z-index: 1000; /* Ensure sidebar is above other content */
+    transition: all 0.3s;
+    overflow-y: auto;
 }
 
-    
+.sidebar.collapsed {
+    margin-left: -250px;
+}
+
 .sidebar-header {
     padding: 0 20px 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
 }
-
 .sidebar-header h2 {
     font-size: 1.5rem;
     margin-bottom: 5px;
@@ -42,7 +47,6 @@
     color: var(--gray-color);
     font-size: 0.9rem;
 }
-
 .menu {
     padding: 10px 0;
 }
@@ -51,117 +55,68 @@
     display: flex;
     align-items: center;
     padding: 12px 20px;
-    margin: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
     color: white;
+    text-decoration: none;
+    transition: all 0.3s;
 }
 
 .menu-item:hover {
-background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .menu-item.active {
- background-color: var(--primary-color);
- font-weight: 500;
+    background-color: var(--primary-color);
+    font-weight: 500;
 }
+
 
 .menu-icon {
- margin-right: 12px;
- font-size: 1.1rem;
- width: 24px;
- text-align: center;
-}
-.sidebar.open {
-transform: translateX(0); /* Show sidebar when open */
-    }
-.sidebar:not(.open) {
-width: 80px; /* Keeps icons visible */
-}
-    
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f7fa;
-    color: #333;
-    line-height: 1.6;
+    margin-right: 10px;
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
 }
 
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .sidebar {
-        transform: translateX(-100%);
-    }
-    
-    .sidebar.active {
-        transform: translateX(0);
-    }
-    
-    .main-content {
-        margin-left: 0;
+.logout-container {
+    padding: 40px;
+    margin-top: auto;
 }
-    
 
+.logout-btn {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+}
+
+/* Toggle Button */
 .toggle-btn {
-top: 20px;
-padding: 5px;
-background: none;
-border: none;
-font-size: 1.5rem;
-cursor: pointer;
-position: fixed;
-justify-self: flex-start;
-z-index: 1001; 
-color: #333;    
-margin-left: 15px;
-transition: margin-left 0.3s ease; 
-}
-
-
-.sidebar.open + .toggle-btn {
-left: 250px; 
-}
-
-.sidebar:not(.open) + .toggle-btn {
-            left: 90px;
- }
-}
-
-
-.toggle-btn {
-top: 20px;
-padding: 5px;
-background: none;
-border: none;
-font-size: 1.5rem;
-cursor: pointer;
-position: fixed;
-justify-self: flex-start;
-z-index: 1001; 
-color: #333;    
-margin-left: 15px;
-transition: margin-left 0.3s ease; 
-}
-
-
-.sidebar.open + .toggle-btn {
-left: 250px;  
-}
-
-
-.sidebar:not(.open) + .toggle-btn {
-left: 90px;
-}
+    top: 20px;
+    padding: 5px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: fixed;
+    justify-self: flex-start;
+    z-index: 1001; /* Ensure button is above the sidebar */
+    color: #333;    
+    margin-left: 15px;
+    transition: margin-left 0.3s ease; /* Smooth transition for button */
+   }
     
+    .sidebar.open + .toggle-btn {
+    left: 250px; /* Move button when sidebar is open */
+}
+    .sidebar:not(.open) + .toggle-btn {
+        left: 90px;
+}
+
 
 
 
 .main-content {
-  margin-left: 260px; 
+  margin-left: 250px; 
   padding: 10px;
   position: relative;
 }
