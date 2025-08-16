@@ -1,17 +1,27 @@
- document.addEventListener("DOMContentLoaded", () => {
-            const sidebar = document.querySelector(".sidebar");
-            const toggleSidebarBtn = document.getElementById("toggleSidebar");
-            const logoutBtn = document.querySelector(".logout_btn");
+document.addEventListener("DOMContentLoaded", () => {
+  const sidebar = document.querySelector(".sidebar");
+  const toggleSidebarBtn = document.getElementById("toggleSidebar");
+  const logoutBtn = document.querySelector(".logout_btn");
         
-          
-            sidebar.classList.add("open");
+    // Ensure sidebar stays open by default
+    sidebar.classList.add("open");
         
-           
-            if (toggleSidebarBtn && sidebar) {
-                toggleSidebarBtn.addEventListener("click", () => {
-                    sidebar.classList.toggle("open");
-                });
-            }
+    // Toggle Sidebar only when clicking the button
+     if (toggleSidebarBtn && sidebar) {
+        toggleSidebarBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+        });
+    }
+        
+            // Logout button functionality
+      if (logoutBtn) {
+      logoutBtn.addEventListener("click", () => {
+      const confirmLogout = confirm("Are you sure you want to log out?");
+      if (confirmLogout) {
+      window.location.href = "login.html";
+      }
+    });
+  }
 });
 
 
