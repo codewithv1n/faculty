@@ -1,28 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
   const toggleSidebarBtn = document.getElementById("toggleSidebar");
-  const logoutBtn = document.querySelector(".logout_btn");
-        
-    // Ensure sidebar stays open by default
-    sidebar.classList.add("open");
-        
-    // Toggle Sidebar only when clicking the button
-     if (toggleSidebarBtn && sidebar) {
-        toggleSidebarBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("open");
-        });
-    }
-        
-            // Logout button functionality
-      if (logoutBtn) {
-      logoutBtn.addEventListener("click", () => {
+  const logoutBtn = document.querySelector(".logout-btn"); // fixed selector
+  
+  // Sidebar visible by default
+  sidebar.classList.add("open");
+
+  // Toggle Sidebar
+  if (toggleSidebarBtn && sidebar) {
+    toggleSidebarBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+    });
+  }
+
+  // Logout button functionality
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       const confirmLogout = confirm("Are you sure you want to log out?");
       if (confirmLogout) {
-      window.location.href = "login.html";
+        window.location.href = "Login/Login.html";
       }
     });
   }
 });
+
 
 
 document.querySelector("form").addEventListener("submit", function(e) {
