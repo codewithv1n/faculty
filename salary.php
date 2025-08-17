@@ -41,8 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="salaryfunctions.js" defer></script>
 </head>
 <body>
-
-     <div class="container">
+<div class="container">
         <!-- Sidebar (hidden by default on mobile) -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
@@ -67,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <span class="menu-icon">📅</span>
                 <span class="menu-text">Schedule Assignment</span>
             </a>
-            <a href="attendance.html" class="menu-item ">
+            <a href="#" class="menu-item">
                 <span class="menu-icon">✅</span>
                 <span class="menu-text">Attendance Monitoring</span>
             </a>
@@ -103,8 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </a>
         </div>
     </div>
-<button id="toggleSidebar" class="toggle-btn">☰</button>
-   
+    <button id="toggleSidebar" class="toggle-btn">☰</button>
 
 <div class="main-content">
   <form action="salary.php" method="POST">
