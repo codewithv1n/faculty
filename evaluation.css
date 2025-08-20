@@ -22,90 +22,96 @@ body {
 
 /* Sidebar Styles */
 .sidebar {
-    width: 250px;
-    background-color: var(--sidebar-color);
-    color: white;
-    overflow-y: auto;
-    transition: margin-left 0.3s ease;
-    margin-left: 0; 
+  width: 250px;
+  background-color: var(--sidebar-color);
+  color: white;
+  overflow-y: auto;
+  margin-left: 0;
 }
 
 .sidebar:not(.open) {
-    margin-left: -250px;
+  margin-left: -250px;
+}
+
+
+.sidebar.animated {
+  transition: margin-left 0.3s ease-in-out;
 }
 
 .sidebar-header {
-    padding: 0 20px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 20px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .sidebar-header h2 {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
 }
 
 .sidebar-header p {
-    color: var(--gray-color);
-    font-size: 0.9rem;
+  color: var(--gray-color);
+  font-size: 0.9rem;
 }
 
 .menu {
-    padding: 10px 0;
+  padding: 10px 0;
 }
 
 .menu-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 20px;
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
 }
 
 .menu-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .menu-item.active {
-    background-color: var(--primary-color);
-    font-weight: 500;
+  background-color: var(--primary-color);
+  font-weight: 500;
 }
 
 .menu-icon {
-    margin-right: 10px;
-    font-size: 1.1rem;
-    width: 24px;
-    text-align: center;
+  margin-right: 10px;
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
 }
 
 .logout-container {
-    padding: 20px;
-    margin-top: auto;
+  padding: 20px;
+  margin-top: auto;
 }
 
 .logout-btn {
-    display: flex;
-    align-items: center;
-    color: white;
-    text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
 }
-/* Main content */
+
 .main {
   flex: 1;
   margin-left: 250px;
   padding: 20px;
-  transition: margin-left 0.3s ease;
 }
 
 .sidebar:not(.open) ~ .main {
   margin-left: 0;
 }
 
-/* Toggle button */
+
+.main.animated {
+  transition: margin-left 0.3s ease-in-out;
+}
+
 .toggle-btn {
   position: fixed;
   top: 15px;
-  left: 265px; 
+  left: 265px;
   padding: 8px 12px;
   font-size: 1.5rem;
   cursor: pointer;
@@ -114,13 +120,16 @@ body {
   background: none;
   color: #333;
   border-radius: 5px;
-  transition: left 0.3s ease;
 }
 
 .sidebar:not(.open) ~ .toggle-btn {
   left: 15px;
 }
 
+
+.toggle-btn.animated {
+  transition: left 0.3s ease-in-out;
+}
 
 .overlay {
   position: fixed;
@@ -137,7 +146,6 @@ body {
   display: block;
 }
 
-/* Responsive: Mobile */
 @media (max-width: 768px) {
   .main {
     margin-left: 0;
@@ -147,12 +155,10 @@ body {
   }
 }
 
-/* --- Cards --- */
 .main {
   margin-left: 30px;
   padding: 20px;
   flex: 1;
-  transition: margin-left 0.3s ease;
 }
 
 .summary {
@@ -194,7 +200,6 @@ th {
   color: white;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .sidebar {
     left: -240px;
