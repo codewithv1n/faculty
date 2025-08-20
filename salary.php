@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <span class="menu-icon">📝</span>
                 <span class="menu-text">Clearance System</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="evaluation.html" class="menu-item">
                 <span class="menu-icon">⭐</span>
                 <span class="menu-text">Evaluation Summary</span>
             </a>
