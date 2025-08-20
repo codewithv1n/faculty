@@ -3,19 +3,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggleSidebarBtn = document.getElementById("toggleSidebar");
     const logoutBtn = document.querySelector(".logout-btn");
 
-    // Create overlay
+    
     const overlay = document.createElement("div");
     overlay.classList.add("overlay");
     document.body.appendChild(overlay);
 
-    // Default state
+  
     if (window.innerWidth <= 768) {
         sidebar.classList.remove("open");
     } else {
         sidebar.classList.add("open");
     }
 
-    // Toggle sidebar
+   
     toggleSidebarBtn.addEventListener("click", () => {
         sidebar.classList.toggle("open");
 
@@ -24,13 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Close sidebar when clicking overlay
+    
     overlay.addEventListener("click", () => {
         sidebar.classList.remove("open");
         overlay.classList.remove("active");
     });
 
-    // Logout confirm
+    
     if (logoutBtn) {
         logoutBtn.addEventListener("click", (e) => {
             e.preventDefault();
@@ -40,4 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+});
+
+window.addEventListener("load", () => {
+  document.querySelector(".sidebar").classList.add("animated");
+  document.querySelector(".main").classList.add("animated");
+  document.querySelector(".toggle-btn").classList.add("animated");
 });
