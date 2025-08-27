@@ -20,7 +20,7 @@ body {
   min-height: 100vh;
 }
 
-/* Sidebar Styles */
+
 .sidebar {
   width: 250px;
   background-color: var(--sidebar-color);
@@ -90,7 +90,7 @@ body {
   text-decoration: none;
 }
 
-/* Toggle Button */
+
 .toggle-btn {
   position: fixed;
   top: 20px;
@@ -109,7 +109,106 @@ body {
   left: 250px;
 }
 
-/*MAIN CONTENT KO NA PO ITO*/
+body:not(.loaded) .sidebar {
+  transition: none !important;
+}
+
+body:not(.loaded) .main-content {
+  transition: none !important;
+}
+
+
+body:not(.loaded) .toggle-btn {
+  transition: none !important;
+}
+
+/** Tab Content */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.tab-btn:hover {
+  color: #007bff;
+}
+
+.tab-btn.active {
+  color: #007bff;
+}
+
+.tab-btn.active::after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  bottom: 0;
+  width: 60%;
+  height: 3px;
+  background: #007bff;
+  border-radius: 2px;
+}
+
+
+.tab-content table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  margin-top: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.tab-content th, 
+.tab-content td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-content th {
+  background: #f4f6f9;
+  font-weight: 600;
+  color: #333;
+}
+
+.tab-content tr:hover {
+  background: #f9f9f9;
+}
+
+
+.tab-content h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #444;
+  border-left: 4px solid var(--primary-color);
+  padding-left: 10px;
+}
+
+
+/*Main Content*/
 .main-content {
   flex: 1;
   margin-left: 20px;
@@ -123,127 +222,32 @@ body {
 }
 
 .salarytitle {
-  margin-left: 27px;
+  margin-left: 25px;
 }
 
+
+/* ADD POSITION */
 .container1 {
   background-color: #fff;
   border-radius: 12px;
-  padding: 30px;
+  padding: 20px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
-  width: 570px;
-  max-width: none;
-  margin-bottom: 10px;
-}
-
-/*POSITION LIST TABLE*/
-.container2 {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
-  width: 96%;
-}
-
-.container2 table {
   width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
+  max-width: 100%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
 }
-
-.container2 button,
-.container2 .change-btn,
-.container2 .delete-btn {
-  padding: 8px 12px !important;
-  font-size: 12px !important;
-  border-radius: 4px !important;
-  border: none !important;
-  cursor: pointer !important;
-  margin: 0 3px !important;
-  transition: background-color 0.2s ease !important;
-  display: inline-block !important;
-  vertical-align: middle !important;
+.container1 h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  border-left: 4px solid #007bff;
+  color: #333;
 }
-
-.change-btn {
-  background-color: #3498db;
-  color: white;
-}
-
-.change-btn:hover {
-  background-color: #1b7dbe;
-}
-
-.delete-btn {
-  background-color: #e74c3c;
-  color: white;
-}
-
-.delete-btn:hover {
-  background-color: #c0392b;
-}
-
-.print-btn {
-  background-color: #333;
-  color: white;
-  margin-left: 100px;
-}
-
-/*LEGEND TABLE*/
-.container3 {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 10px;
-  width: 550px;
-  max-width: none;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
-  margin-left: 0;
-  position: absolute;
-  top: 0;
-  left: calc(100% - 600px);
-  margin-top: 95px;
-}
-
-.container1 h2,
-.container2 h2,
-.container3 h2 {
-  font-size: 20px;
-  margin-bottom: 15px;
-  font-weight: 500;
-  color: #2c3e50;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="number"],
-input[type="date"] {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: border-color 0.3s;
-}
-
-input:focus {
-  border-color: #3498db;
-  outline: none;
-}
-
 .container1 button {
   width: 100%;
-  padding: 10px;
-  font-size: 14px;
+  padding: 12px;
+  font-size: 15px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -265,7 +269,7 @@ input:focus {
 
 th,
 td {
-  padding: 10px 15px;
+  padding: 12px 15px;
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
@@ -278,3 +282,200 @@ th {
 tr:hover {
   background-color: #f9f9f9;
 }
+
+#addPosition .form-group input {
+  width: 97%; 
+  max-width: 100%;
+}
+#addPosition .form-group select {
+  width: 99%; 
+  max-width: 100%;
+}
+.container1 .form-group button {
+  width: 95%; 
+  max-width: 100%;
+}
+
+
+/* POSITION LIST */
+.container2 {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+  width: 96%;
+  margin-top: 20px;
+}
+#searchPosition {
+  width: 280px;              /* medyo mas malapad */
+  padding: 10px 15px;        /* loob spacing */
+  margin-bottom: 15px;       /* pagitan sa table */
+  font-size: 14px;
+  border: 1px solid #ccc;    /* subtle border */
+  border-radius: 25px;       /* rounded */
+  outline: none;
+  transition: 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+#searchPosition:focus {
+  border-color: #007bff;     
+  
+}
+
+
+/* Delete button */
+.delete-btn {
+  background-color: #e74c3c;  
+  color: #fff;                 
+  border: none;               
+  padding: 6px 12px;           
+  border-radius: 6px;         
+  cursor: pointer;             
+  font-size: 14px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;  
+  transform: scale(1.05);     
+}
+
+.delete-btn:active {
+  transform: scale(0.95);     
+}
+
+/*Design for all inputs*/
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background: #fff;
+}
+
+input:focus,
+select:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 4px rgba(52, 152, 219, 0.3);
+}
+
+
+/* ASSIGN SALARY */
+.container4 {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-top: 15px;
+  max-width: 500%;
+}
+
+.container4 h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  border-left: 4px solid #007bff;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+#assignSalaryForm button {
+  width: 100%;
+  background: #28a745;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+#assignSalaryForm button:hover {
+  background: #218838;
+}
+
+#assignSalary .form-group input {
+  width: 97%; 
+  max-width: 100%;
+}
+#assignSalary .form-group select {
+  width: 99%; 
+  max-width: 100%;
+}
+
+
+/* SALARY LIST*/
+.container5 {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+  width: 96%;
+  margin-top: 20px;
+}
+
+
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #2c3e50;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background: #fff;
+}
+
+input:focus,
+select:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 4px rgba(52, 152, 219, 0.3);
+}
+
+
