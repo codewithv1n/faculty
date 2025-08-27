@@ -1,19 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
   const toggleSidebarBtn = document.getElementById("toggleSidebar");
-  const logoutBtn = document.querySelector(".logout-btn"); // fixed selector
+  const logoutBtn = document.querySelector(".logout-btn"); 
   
-  // Sidebar visible by default
   sidebar.classList.add("open");
 
-  // Toggle Sidebar
   if (toggleSidebarBtn && sidebar) {
     toggleSidebarBtn.addEventListener("click", () => {
       sidebar.classList.toggle("open");
     });
   }
 
-  // Logout button functionality
   if (logoutBtn) {
     logoutBtn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -25,68 +22,176 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
-
-document.querySelector("form").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    let job_position = document.querySelector('input[name="position"]').value;
-    let pay_level = document.querySelector('input[name="payLevel"]').value;
-    let monthly_salary = document.querySelector('input[name="monthlySalary"]').value;
-    let employment_type = document.querySelector('input[name="employmentType"]').value;
-    let effective_date = document.querySelector('input[name="effectiveDate"]').value;
-
-    let formData = new FormData();
-    formData.append("position", job_position);
-    formData.append("payLevel", pay_level);
-    formData.append("monthlySalary", monthly_salary);
-    formData.append("employmentType", employment_type);
-    formData.append("effectiveDate", effective_date);
-
-    fetch("salary.php", { 
-        method: "POST",
-        body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-        data = data.trim(); 
-        if (data === "success") {
-            loadPositions();
-            document.querySelector("form").reset();
-        } else {
-            console.error("Server response:", data); 
-            alert("Error: " + data);
-        }
-    })
-    .catch(error => {
-        console.error("Fetch error:", error);
-        alert("An error occurred while saving the data.");
-    });
+window.addEventListener("load", function () {
+  document.body.classList.add("loaded");
 });
 
-function loadPositions() {
-    fetch("salarydatabase.php")
-    .then(response => response.json())
-    .then(data => {
-        let tbody = document.querySelector("tbody.positionBody");
-        tbody.innerHTML = "";
-        data.forEach(row => {
-            tbody.innerHTML += `
-                <tr>
-                    <td>${row.job_position}</td>
-                    <td>${row.pay_level}</td>
-                    <td>₱${row.monthly_salary}</td>
-                    <td>${row.employment_type}</td>
-                    <td>${row.effective_date}</td>
-                   <td style="white-space: nowrap; text-align: center; padding: 8px;">
-                        <button class="change-btn" data-id="${row.id}" style="padding: 8px 12px; margin: 0 3px; font-size: 12px; border: none; border-radius: 4px; cursor: pointer;">Edit</button>
-                        <button class="delete-btn" data-id="${row.id}" style="padding: 8px 12px; margin: 0 3px; font-size: 12px; border: none; border-radius: 4px; cursor: pointer;">Delete</button>
-                    </td>
-                </tr>
-            `;
-        });
-    })
-    .catch(error => console.error("Error loading positions:", error));
-}
 
-document.addEventListener("DOMContentLoaded", loadPositions);
+
+
+/** Position List */
+document.addEventListener("DOMContentLoaded", () => {
+  const positionForm = document.getElementById("positionForm");
+  const positionTableBody = document.getElementById("positionTableBody");
+
+ 
+  positionForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const position = document.getElementById("position").value;
+    const payLevel = document.getElementById("payLevel").value;
+    const monthlySalary = parseFloat(document.getElementById("monthlySalary").value);
+    const employmentType = document.getElementById("employmentType").value;
+    const effectiveDate = document.getElementById("effectiveDate").value;
+
+    
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+      <td>${position}</td>
+      <td>${payLevel}</td>
+      <td>₱${monthlySalary.toLocaleString()}</td>
+      <td>${employmentType}</td>
+      <td>${effectiveDate}</td>
+      <td>
+        <button type="button" class="delete-btn">Delete</button>
+      </td>
+    `;
+    positionTableBody.appendChild(newRow);
+
+    positionForm.reset();
+  });
+
+  
+  positionTableBody.addEventListener("click", (e) => {
+    const target = e.target;
+    const row = target.closest("tr");
+    if (!row) return;
+
+    if (target.classList.contains("delete-btn")) {
+      row.remove();
+    }
+  });
+});
+
+
+
+/** Assign Salary */
+document.addEventListener("DOMContentLoaded", () => {
+  const assignSalaryForm = document.getElementById("assignSalaryForm");
+  const facultySalaryBody = document.getElementById("facultySalaryBody");
+  const positionDropdown = document.getElementById("positionDropdown");
+  const basicPayField = document.getElementById("basicPay");
+  const transportAllowanceField = document.getElementById("transportAllowance");
+  const taxDeductionField = document.getElementById("taxDeduction");
+  const netPayField = document.getElementById("netPay");
+
+  
+  positionDropdown.addEventListener("change", function() {
+    const salary = parseFloat(this.options[this.selectedIndex].dataset.salary);
+    const allowance = 1000;
+    const tax = salary * 0.10;
+    const netPay = salary + allowance - tax;
+
+    basicPayField.value = `₱${salary.toLocaleString()}`;
+    transportAllowanceField.value = `₱${allowance.toLocaleString()}`;
+    taxDeductionField.value = `₱${tax.toLocaleString()}`;
+    netPayField.value = `₱${netPay.toLocaleString()}`;
+  });
+
+  
+  assignSalaryForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const facultyName = document.getElementById("facultyName").value; 
+    const positionName = document.getElementById("positionDropdown").selectedOptions[0].text;
+    const basicPay = basicPayField.value;
+    const allowance = transportAllowanceField.value;
+    const tax = taxDeductionField.value;
+    const netPay = netPayField.value;
+    const effectiveDate = document.getElementById("effectiveDateAssign").value;
+
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+      <td>${facultyName}</td>
+      <td>${positionName}</td>
+      <td>${basicPay}</td>
+      <td>${allowance}</td>
+      <td>${tax}</td>
+      <td>${netPay}</td>
+      <td>${effectiveDate}</td>
+      <td> <button type="button" class="delete-btn">Delete</button></td>
+    `;
+    facultySalaryBody.appendChild(newRow);
+
+   
+    newRow.querySelector(".delete-btn").addEventListener("click", function() {
+      newRow.remove();
+    });
+
+    
+    assignSalaryForm.reset();
+    basicPayField.value = "";
+    transportAllowanceField.value = "₱1000";
+    taxDeductionField.value = "";
+    netPayField.value = "";
+  });
+});
+
+
+
+/** Tabs */
+document.addEventListener("DOMContentLoaded", () => {
+  const tabs = document.querySelectorAll(".tab-btn");
+  const contents = document.querySelectorAll(".tab-content");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      contents.forEach(c => c.classList.remove("active"));
+
+      tab.classList.add("active");
+      document.getElementById(tab.dataset.tab).classList.add("active");
+    });
+  });
+});
+
+
+/** Position Search */
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("searchPosition");
+  const tableBody = document.getElementById("positionTableBody");
+
+  searchInput.addEventListener("keyup", function() {
+    const filter = searchInput.value.toLowerCase();
+    const rows = tableBody.getElementsByTagName("tr");
+
+    Array.from(rows).forEach(row => {
+      const cellsText = row.innerText.toLowerCase();
+      if (cellsText.includes(filter)) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  });
+});
+
+/** Faculty Salary Search */
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("facultySearch");
+  const tableBody = document.getElementById("facultySalaryBody");
+
+  searchInput.addEventListener("keyup", function() {
+    const filter = searchInput.value.toLowerCase();
+    const rows = tableBody.getElementsByTagName("tr");
+
+    Array.from(rows).forEach(row => {
+      const cellsText = row.innerText.toLowerCase();
+      if (cellsText.includes(filter)) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  });
+});
