@@ -6,6 +6,8 @@
   <title>Salary Grade & Pay</title>
   <link rel="stylesheet" href="salarycss.css">
   <script src="salaryfunctions.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 <body>
 <div class="container">
@@ -22,7 +24,19 @@
       <a href="#" class="menu-item"><span class="menu-icon">📅</span><span class="menu-text">Schedule Assignment</span></a>
       <a href="#" class="menu-item"><span class="menu-icon">✅</span><span class="menu-text">Attendance Monitoring</span></a>
       <a href="#" class="menu-item"><span class="menu-icon">🏖️</span><span class="menu-text">Leave Application</span></a>
-      <a href="#" class="menu-item active"><span class="menu-icon">💰</span><span class="menu-text">Salary Grade & Pay</span></a>
+
+  <div class="menu-item" id="salary-menu">
+    <span class="menu-icon">💰</span>
+    <span class="menu-text">Salary Grade & Pay</span>
+    <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
+  </div>
+  <div class="submenu" id="salary-submenu">
+    <a href="#addPosition" class="submenu-item">➕ Add Position</a>
+    <a href="#positionList" class="submenu-item">📋 Position List</a>
+    <a href="#assignSalary" class="submenu-item">📝 Assign Salary</a>
+    <a href="#facultySalaryList" class="submenu-item">👨‍🏫 Faculty Salary List</a>
+  </div>
+
       <a href="#" class="menu-item"><span class="menu-icon">🏫</span><span class="menu-text">Teaching History</span></a>
       <a href="#" class="menu-item"><span class="menu-icon">📝</span><span class="menu-text">Clearance System</span></a>
       <a href="evaluation.html" class="menu-item"><span class="menu-icon">⭐</span><span class="menu-text">Evaluation Summary</span></a>
@@ -36,128 +50,133 @@
 
   
   <div class="main-content">
-    <div class="salarytitle"> <h2>Salary Grade & Pay</h2></div>
-
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="addPosition"> Add Position</button>
-      <button class="tab-btn" data-tab="positionList"> Position List</button>
-      <button class="tab-btn" data-tab="assignSalary">Assign Salary</button>
-      <button class="tab-btn" data-tab="facultySalaryList"> Faculty Salary List</button>
+    <div class="salarytitle">
+      <h2>Salary Grade & Pay</h2>
     </div>
+
+  <div id="addPosition" class="tab-content active">
+    <div class="container1">
+      <h2>Add New Position</h2>
+      <form id="positionForm">
+        <div class="form-group">
+          <label>Job Position</label>
+          <input type="text" id="position" required>
+        </div>
+        <div class="form-group">
+          <label>Pay Level</label>
+          <input type="number" id="payLevel" required>
+        </div>
+        <div class="form-group">
+          <label>Monthly Salary</label>
+          <input type="number" id="monthlySalary" required>
+        </div>
+        <div class="form-group">
+          <label>Employment Type</label>
+          <select id="employmentType" required>
+            <option value="" disabled selected>Select Type</option>
+            <option value="Full-Time">Full-Time</option>
+            <option value="Part-Time">Part-Time</option>
+            <option value="Contract">Contractual</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Effective Date</label>
+          <input type="date" id="effectiveDate" required>
+        </div>
+        <button type="submit">Add Position</button>
+      </form>
+    </div>
+  </div>
 
   
-    <div id="addPosition" class="tab-content active">
-      <div class="container1">
-        <h2>Add New Position</h2>
-        <form id="positionForm">
-          <div class="form-group"><label>Job Position</label><input type="text" id="position" required></div>
-          <div class="form-group"><label>Pay Level</label><input type="number" id="payLevel" required></div>
-          <div class="form-group"><label>Monthly Salary</label><input type="number" id="monthlySalary" required></div>
-          <div class="form-group">
-            <label>Employment Type</label>
-            <select id="employmentType" required>
-              <option value="" disabled selected>Select Type</option>
-              <option value="Full-Time">Full-Time</option>
-              <option value="Part-Time">Part-Time</option>
-              <option value="Contract">Contractual</option>
-            </select>
-          </div>
-          <div class="form-group"><label>Effective Date</label><input type="date" id="effectiveDate" required></div>
-          <button type="submit">Add Position</button>
-        </form>
-      </div>
+  <div id="positionList" class="tab-content">
+    <div class="container2">
+      <h2>Position List</h2>
+      <input type="text" id="searchPosition" placeholder="🔍 Search" style="margin-bottom:10px; padding:5px; width: 250px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th>Pay Level</th>
+            <th>Monthly Salary</th>
+            <th>Employment Type</th>
+            <th>Effective Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="positionTableBody"></tbody>
+      </table>
     </div>
+  </div>
 
-    
-<div id="positionList" class="tab-content">
-  <div class="container2">
-    <h2>Position List</h2>
-    <input type="text" id="searchPosition" placeholder="🔍 Search" style="margin-bottom:10px; padding:5px; width: 250px;">
-    <table>
-      <thead>
-        <tr>
-          <th>Position</th>
-          <th>Pay Level</th>
-          <th>Monthly Salary</th>
-          <th>Employment Type</th>
-          <th>Effective Date</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody id="positionTableBody"></tbody>
-    </table>
+  
+  <div id="assignSalary" class="tab-content">
+    <div class="container4">
+      <h2>Assign Faculty Salary</h2>
+      <form id="assignSalaryForm">
+        <div class="form-group">
+          <label for="facultyName">Faculty Name</label>
+          <input type="text" id="facultyName" placeholder="Enter Faculty Name" required>
+        </div>
+        <div class="form-group">
+          <label for="positionDropdown">Select Position / Pay Level</label>
+          <select id="positionDropdown" required>
+            <option disabled selected>Select Position</option>
+            <option value="1" data-salary="12000">Utility / Janitor</option>
+            <option value="2" data-salary="18000">Security Guard / Maintenance</option>
+            <option value="3" data-salary="23000">Administrative Staff / Clerk</option>
+            <option value="4" data-salary="28000">College Instructor (Part-time/Intern)</option>
+            <option value="5" data-salary="45000">College Instructor (Full-time)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Basic Pay</label>
+          <input type="text" id="basicPay" readonly>
+        </div>
+        <div class="form-group">
+          <label>Transport Allowance</label>
+          <input type="text" id="transportAllowance" value="₱1000" readonly>
+        </div>
+        <div class="form-group">
+          <label>Tax Deduction (10%)</label>
+          <input type="text" id="taxDeduction" readonly>
+        </div>
+        <div class="form-group">
+          <label>Net Pay</label>
+          <input type="text" id="netPay" readonly>
+        </div>
+        <div class="form-group">
+          <label for="effectiveDateAssign">Effective Date</label>
+          <input type="date" id="effectiveDateAssign" required>
+        </div>
+        <button type="submit">Assign Salary</button>
+      </form>
+    </div>
+  </div>
+
+  
+  <div id="facultySalaryList" class="tab-content">
+    <div class="container5">
+      <h2>Faculty Salary List</h2>
+      <input type="text" id="facultySearch" placeholder="🔍 Search" style="margin-bottom:10px; padding:5px; width: 250px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Faculty</th>
+            <th>Position</th>
+            <th>Basic Pay</th>
+            <th>Allowance</th>
+            <th>Tax Deduction</th>
+            <th>Net Pay</th>
+            <th>Effective Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="facultySalaryBody"></tbody>
+      </table>
+    </div>
   </div>
 </div>
 
-
-   
-<div id="assignSalary" class="tab-content">
-      <div class="container4">
-        <h2>Assign Faculty Salary</h2>
-        <form id="assignSalaryForm">
-          <div class="form-group">
-            <label for="facultyName">Faculty Name</label>
-            <input type="text" id="facultyName" placeholder="Enter Faculty Name" required>
-          </div>
-          <div class="form-group">
-            <label for="positionDropdown">Select Position / Pay Level</label>
-            <select id="positionDropdown" required>
-              <option disabled selected>Select Position</option>
-              <option value="1" data-salary="12000">Utility / Janitor</option>
-              <option value="2" data-salary="18000">Security Guard / Maintenance</option>
-              <option value="3" data-salary="23000">Administrative Staff / Clerk</option>
-              <option value="4" data-salary="28000">College Instructor (Part-time/Intern)</option>
-              <option value="5" data-salary="45000">College Instructor (Full-time)</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Basic Pay</label>
-            <input type="text" id="basicPay" readonly>
-          </div>
-          <div class="form-group">
-            <label>Transport Allowance</label>
-            <input type="text" id="transportAllowance" value="₱1000" readonly>
-          </div>
-          <div class="form-group">
-            <label>Tax Deduction (10%)</label>
-            <input type="text" id="taxDeduction" readonly>
-          </div>
-          <div class="form-group">
-            <label>Net Pay</label>
-            <input type="text" id="netPay" readonly>
-          </div>
-          <div class="form-group">
-            <label for="effectiveDateAssign">Effective Date</label>
-            <input type="date" id="effectiveDateAssign" required>
-          </div>
-          <button type="submit">Assign Salary</button>
-        </form>
-      </div>
-</div>
-
-   
-    <div id="facultySalaryList" class="tab-content">
-      <div class="container5">
-        <h2>Faculty Salary List</h2>
-        <input type="text" id="facultySearch" placeholder="🔍 Search" style="margin-bottom:10px; padding:5px; width: 250px;">
-        <table>
-          <thead>
-            <tr><th>Faculty</th>
-                <th>Position</th>
-                <th>Basic Pay</th>
-                <th>Allowance</th>
-                <th>Tax Deduction</th>
-                <th>Net Pay</th>
-                <th>Effective Date</th>
-                <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="facultySalaryBody"></tbody>
-        </table>
-      </div>
-    </div>
-
-  </div>
-</div>
 </body>
 </html>
