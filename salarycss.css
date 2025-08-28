@@ -479,3 +479,42 @@ select:focus {
 }
 
 
+/*sub-menu*/
+.submenu {
+  display: none;
+  flex-direction: column;
+  background: #34495e;
+  padding-left: 40px;
+}
+
+.submenu-item {
+  padding: 10px 15px;
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 14px;
+  display: block;
+  border-radius: 4px;
+}
+
+.submenu-item:hover {
+  background:  rgba(255, 255, 255, 0.08);
+}
+
+.menu-item.active {
+  background-color:rgba(41, 128, 185, 0.2);
+  font-weight: 500;
+  border-left: 4px solid #2980b9;
+}
+
+.menu-item .dropdown-icon {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.menu-item.active .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.menu-item.active + .submenu {
+  display: flex;
+}
