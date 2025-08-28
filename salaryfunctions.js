@@ -139,21 +139,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-/** Tabs */
 document.addEventListener("DOMContentLoaded", () => {
-  const tabs = document.querySelectorAll(".tab-btn");
-  const contents = document.querySelectorAll(".tab-content");
+  // Kunin lahat ng menu na may dropdown
+  const dropdownMenus = document.querySelectorAll(".menu-item");
 
-  tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-      tabs.forEach(t => t.classList.remove("active"));
-      contents.forEach(c => c.classList.remove("active"));
-
-      tab.classList.add("active");
-      document.getElementById(tab.dataset.tab).classList.add("active");
+  dropdownMenus.forEach(menu => {
+    menu.addEventListener("click", () => {
+      // toggle open/close
+      menu.classList.toggle("active");
     });
   });
 });
+
 
 
 /** Position Search */
