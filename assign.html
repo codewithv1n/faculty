@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salary Grade & Pay</title>
+  <link rel="stylesheet" href="salarycss.css">
+  <script src="salaryfunctions.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+<div class="container">
+  
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Faculty Management</h2>
+      <p>Administrator Dashboard</p>
+    </div>
+    <div class="menu">
+      <a href="#" class="menu-item"><span class="menu-icon">📊</span><span class="menu-text">Dashboard</span></a>
+      <a href="facultyProfile.html" class="menu-item"><span class="menu-icon">👤</span><span class="menu-text">Faculty Profile</span></a>
+      <a href="#" class="menu-item"><span class="menu-icon">📚</span><span class="menu-text">Subject Load Tracker</span></a>
+      <a href="#" class="menu-item"><span class="menu-icon">📅</span><span class="menu-text">Schedule Assignment</span></a>
+      <a href="#" class="menu-item"><span class="menu-icon">✅</span><span class="menu-text">Attendance Monitoring</span></a>
+      <a href="#" class="menu-item"><span class="menu-icon">🏖️</span><span class="menu-text">Leave Application</span></a>
+
+  <div class="menu-item" id="salary-menu">
+    <span class="menu-icon">💰</span>
+    <span class="menu-text">Salary Grade & Pay</span>
+    <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
+  </div>
+  <div class="submenu" id="salary-submenu">
+    <a href="salary.html" class="submenu-item active">Add Position</a>
+    <a href="assign.html" class="submenu-item">Assign Salary</a>
+  </div>
+
+      <a href="#" class="menu-item"><span class="menu-icon">🏫</span><span class="menu-text">Teaching History</span></a>
+      <a href="#" class="menu-item"><span class="menu-icon">📝</span><span class="menu-text">Clearance System</span></a>
+      <a href="evaluation.html" class="menu-item"><span class="menu-icon">⭐</span><span class="menu-text">Evaluation Summary</span></a>
+      <a href="#" class="menu-item"><span class="menu-icon">📋</span><span class="menu-text">Faculty Directory</span></a>
+    </div>
+    <div class="logout-container">
+      <a href="Login/Login.html" class="logout-btn"><span class="menu-icon">🚪</span><span class="menu-text">Log out</span></a>
+    </div>
+  </div>
+  <button id="toggleSidebar" class="toggle-btn">☰</button>
+
+  
+ <div class="main-content">
+    <div class="salarytitle">
+      <h2>Salary Grade & Pay</h2>
+    </div>
+
+  <div id="assignSalary" class="tab-content active">
+    <div class="container4">
+      <h2>Assign Faculty Salary</h2>
+      <form id="assignSalaryForm">
+        <div class="form-group">
+          <label for="facultyName">Faculty Name</label>
+          <input type="text" id="facultyName" placeholder="Enter Faculty Name" required>
+        </div>
+        <div class="form-group">
+          <label for="positionDropdown">Select Position / Pay Level</label>
+          <select id="positionDropdown" required>
+            <option disabled selected>Select Position</option>
+            <option value="1" data-salary="12000">Utility / Janitor</option>
+            <option value="2" data-salary="18000">Security Guard / Maintenance</option>
+            <option value="3" data-salary="23000">Administrative Staff / Clerk</option>
+            <option value="4" data-salary="28000">College Instructor (Part-time/Intern)</option>
+            <option value="5" data-salary="45000">College Instructor (Full-time)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Basic Pay</label>
+          <input type="text" id="basicPay" readonly>
+        </div>
+        <div class="form-group">
+          <label>Transport Allowance</label>
+          <input type="text" id="transportAllowance" value="₱1000" readonly>
+        </div>
+        <div class="form-group">
+          <label>Tax Deduction (10%)</label>
+          <input type="text" id="taxDeduction" readonly>
+        </div>
+        <div class="form-group">
+          <label>Net Pay</label>
+          <input type="text" id="netPay" readonly>
+        </div>
+        <div class="form-group">
+          <label for="effectiveDateAssign">Effective Date</label>
+          <input type="date" id="effectiveDateAssign" required>
+        </div>
+        <button type="submit">Assign Salary</button>
+      </form>
+   </div>
+    
+    <div class="container5">
+      <h2>Faculty Salary List</h2>
+      <input type="text" id="facultySearch" placeholder="🔍 Search" style="margin-bottom:10px; padding:5px; width: 250px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Faculty</th>
+            <th>Position</th>
+            <th>Basic Pay</th>
+            <th>Allowance</th>
+            <th>Tax Deduction</th>
+            <th>Net Pay</th>
+            <th>Effective Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="facultySalaryBody"></tbody>
+      </table>
+    </div>
+</div>
+
+
+
+
+
+  
+
+
+</body>
+</html>
