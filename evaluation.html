@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Evaluation Summary</title>
 <link rel="stylesheet" href="evaluation.css">
-<script src="evaluation.js"></script>
+<script src="evaluation.js" defer></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>  
 
@@ -41,10 +42,15 @@
                 <span class="menu-icon">🏖️</span>
                 <span class="menu-text">Leave Application</span>
             </a>
-            <a href="salary.html" class="menu-item">
-                <span class="menu-icon">💰</span>
-                <span class="menu-text">Salary Grade & Pay</span>
-            </a>
+        <div class="menu-item" id="salary-menu">
+          <span class="menu-icon">💰</span>
+          <span class="menu-text">Salary Grade & Pay</span>
+          <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div class="submenu" id="salary-submenu">
+          <a href="salaryadd.html" class="submenu-item active">Add Position</a>
+          <a href="assign.html" class="submenu-item">Assign Salary</a>
+        </div>
             <a href="#" class="menu-item">
                 <span class="menu-icon">🏫</span>
                 <span class="menu-text">Teaching History</span>

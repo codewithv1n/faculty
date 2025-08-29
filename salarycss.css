@@ -374,7 +374,6 @@ select:focus {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   margin-top: 15px;
-  max-width: 500%;
 }
 
 .container4 h2 {
@@ -484,16 +483,20 @@ select:focus {
   display: none;
   flex-direction: column;
   background: #34495e;
-  padding-left: 40px;
+  text-align: center;
 }
 
+.submenu.open {
+  max-height: 500px;
+}
+        
 .submenu-item {
-  padding: 10px 15px;
-  color: #ecf0f1;
-  text-decoration: none;
-  font-size: 14px;
+  padding: 12px 12px 12px 10px;
   display: block;
-  border-radius: 4px;
+  color: #ccc;
+  text-decoration: none;
+  transition: all 0.3s;
+  border-left: 4px solid transparent;
 }
 
 .submenu-item:hover {
@@ -503,7 +506,7 @@ select:focus {
 .menu-item.active {
   background-color:rgba(41, 128, 185, 0.2);
   font-weight: 500;
-  border-left: 4px solid #2980b9;
+  
 }
 
 .menu-item .dropdown-icon {
@@ -518,3 +521,14 @@ select:focus {
 .menu-item.active + .submenu {
   display: flex;
 }
+
+.submenu-item.active {
+  background-color: rgba(41, 128, 185, 0.2);
+  color: white;
+  border-left: 4px solid #2980b9;
+}
+
+.dropdown-icon {
+            transition: transform 0.3s;
+        }
+
