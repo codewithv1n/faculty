@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
   const toggleSidebarBtn = document.getElementById("toggleSidebar");
-  const logoutBtn = document.querySelector(".logout-btn"); 
-  
+  const logoutBtn = document.querySelector(".logout-btn");
+
   sidebar.classList.add("open");
 
   if (toggleSidebarBtn && sidebar) {
@@ -26,25 +26,22 @@ window.addEventListener("load", function () {
   document.body.classList.add("loaded");
 });
 
-
-
-
 /** Position List */
 document.addEventListener("DOMContentLoaded", () => {
   const positionForm = document.getElementById("positionForm");
   const positionTableBody = document.getElementById("positionTableBody");
 
- 
   positionForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const position = document.getElementById("position").value;
     const payLevel = document.getElementById("payLevel").value;
-    const monthlySalary = parseFloat(document.getElementById("monthlySalary").value);
+    const monthlySalary = parseFloat(
+      document.getElementById("monthlySalary").value
+    );
     const employmentType = document.getElementById("employmentType").value;
     const effectiveDate = document.getElementById("effectiveDate").value;
 
-    
     const newRow = document.createElement("tr");
     newRow.innerHTML = `
       <td>${position}</td>
@@ -61,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
     positionForm.reset();
   });
 
-  
   positionTableBody.addEventListener("click", (e) => {
     const target = e.target;
     const row = target.closest("tr");
@@ -73,8 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-
 /** Assign Salary */
 document.addEventListener("DOMContentLoaded", () => {
   const assignSalaryForm = document.getElementById("assignSalaryForm");
@@ -85,11 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const taxDeductionField = document.getElementById("taxDeduction");
   const netPayField = document.getElementById("netPay");
 
-  
-  positionDropdown.addEventListener("change", function() {
+  positionDropdown.addEventListener("change", function () {
     const salary = parseFloat(this.options[this.selectedIndex].dataset.salary);
     const allowance = 1000;
-    const tax = salary * 0.10;
+    const tax = salary * 0.1;
     const netPay = salary + allowance - tax;
 
     basicPayField.value = `₱${salary.toLocaleString()}`;
@@ -98,12 +91,12 @@ document.addEventListener("DOMContentLoaded", () => {
     netPayField.value = `₱${netPay.toLocaleString()}`;
   });
 
-  
-  assignSalaryForm.addEventListener("submit", function(e) {
+  assignSalaryForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const facultyName = document.getElementById("facultyName").value; 
-    const positionName = document.getElementById("positionDropdown").selectedOptions[0].text;
+    const facultyName = document.getElementById("facultyName").value;
+    const positionName =
+      document.getElementById("positionDropdown").selectedOptions[0].text;
     const basicPay = basicPayField.value;
     const allowance = transportAllowanceField.value;
     const tax = taxDeductionField.value;
@@ -123,12 +116,10 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     facultySalaryBody.appendChild(newRow);
 
-   
-    newRow.querySelector(".delete-btn").addEventListener("click", function() {
+    newRow.querySelector(".delete-btn").addEventListener("click", function () {
       newRow.remove();
     });
 
-    
     assignSalaryForm.reset();
     basicPayField.value = "";
     transportAllowanceField.value = "₱1000";
@@ -137,32 +128,43 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  // Toggle Sidebar
+  const toggleSidebar = document.getElementById("toggleSidebar");
+  const sidebar = document.getElementById("sidebar");
 
-
-document.addEventListener("DOMContentLoaded", () => {
-  // Kunin lahat ng menu na may dropdown
-  const dropdownMenus = document.querySelectorAll(".menu-item");
-
-  dropdownMenus.forEach(menu => {
-    menu.addEventListener("click", () => {
-      // toggle open/close
-      menu.classList.toggle("active");
+  if (toggleSidebar && sidebar) {
+    toggleSidebar.addEventListener("click", function () {
+      sidebar.classList.toggle("collapsed");
     });
+  }
+  // Toggle salary submenu
+  document.getElementById("salary-menu").addEventListener("click", function () {
+    const submenu = document.getElementById("salary-submenu");
+    const icon = this.querySelector(".dropdown-icon i");
+
+    submenu.classList.toggle("open");
+
+    if (submenu.classList.contains("open")) {
+      icon.classList.remove("fa-chevron-down");
+      icon.classList.add("fa-chevron-up");
+    } else {
+      icon.classList.remove("fa-chevron-up");
+      icon.classList.add("fa-chevron-down");
+    }
   });
 });
-
-
 
 /** Position Search */
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchPosition");
   const tableBody = document.getElementById("positionTableBody");
 
-  searchInput.addEventListener("keyup", function() {
+  searchInput.addEventListener("keyup", function () {
     const filter = searchInput.value.toLowerCase();
     const rows = tableBody.getElementsByTagName("tr");
 
-    Array.from(rows).forEach(row => {
+    Array.from(rows).forEach((row) => {
       const cellsText = row.innerText.toLowerCase();
       if (cellsText.includes(filter)) {
         row.style.display = "";
@@ -178,11 +180,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("facultySearch");
   const tableBody = document.getElementById("facultySalaryBody");
 
-  searchInput.addEventListener("keyup", function() {
+  searchInput.addEventListener("keyup", function () {
     const filter = searchInput.value.toLowerCase();
     const rows = tableBody.getElementsByTagName("tr");
 
-    Array.from(rows).forEach(row => {
+    Array.from(rows).forEach((row) => {
       const cellsText = row.innerText.toLowerCase();
       if (cellsText.includes(filter)) {
         row.style.display = "";
