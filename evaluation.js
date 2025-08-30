@@ -1,45 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const sidebar = document.getElementById("sidebar");
-    const toggleSidebarBtn = document.getElementById("toggleSidebar");
-    const logoutBtn = document.querySelector(".logout-btn");
+  const sidebar = document.getElementById("sidebar");
+  const toggleSidebarBtn = document.getElementById("toggleSidebar");
+  const logoutBtn = document.querySelector(".logout-btn");
 
-    
-    const overlay = document.createElement("div");
-    overlay.classList.add("overlay");
-    document.body.appendChild(overlay);
+  const overlay = document.createElement("div");
+  overlay.classList.add("overlay");
+  document.body.appendChild(overlay);
 
-  
+  if (window.innerWidth <= 768) {
+    sidebar.classList.remove("open");
+  } else {
+    sidebar.classList.add("open");
+  }
+
+  toggleSidebarBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+
     if (window.innerWidth <= 768) {
-        sidebar.classList.remove("open");
-    } else {
-        sidebar.classList.add("open");
+      overlay.classList.toggle("active", sidebar.classList.contains("open"));
     }
+  });
 
-   
-    toggleSidebarBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("open");
+  overlay.addEventListener("click", () => {
+    sidebar.classList.remove("open");
+    overlay.classList.remove("active");
+  });
 
-        if (window.innerWidth <= 768) {
-            overlay.classList.toggle("active", sidebar.classList.contains("open"));
-        }
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const confirmLogout = confirm("Are you sure you want to log out?");
+      if (confirmLogout) {
+        window.location.href = "Login/Login.html";
+      }
     });
-
-    
-    overlay.addEventListener("click", () => {
-        sidebar.classList.remove("open");
-        overlay.classList.remove("active");
-    });
-
-    
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            const confirmLogout = confirm("Are you sure you want to log out?");
-            if (confirmLogout) {
-                window.location.href = "Login/Login.html";
-            }
-        });
-    }
+  }
 });
 
 window.addEventListener("load", () => {
