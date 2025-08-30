@@ -20,7 +20,7 @@ body {
   min-height: 100vh;
 }
 
-
+/* Sidebar */
 .sidebar {
   width: 250px;
   background-color: var(--sidebar-color);
@@ -77,7 +77,69 @@ body {
   width: 24px;
   text-align: center;
 }
+.dropdown-icon {
+  transition: transform 0.3s;
+}
 
+/*all table design*/
+.tab-content table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  margin-top: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content th,
+.tab-content td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-content th {
+  background: #f4f6f9;
+  font-weight: 600;
+  color: #333;
+}
+
+.tab-content tr:hover {
+  background: #f9f9f9;
+}
+
+/*dropdown menu*/
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.submenu.open {
+  max-height: 500px;
+}
+
+.submenu-item {
+  padding: 12px 20px 12px 60px;
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  transition: all 0.3s;
+  border-left: 4px solid transparent;
+}
+
+.submenu-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.submenu-item.active {
+  background-color: rgba(41, 128, 185, 0.2);
+  color: white;
+  border-left: 4px solid #2980b9;
+}
 .logout-container {
   padding: 20px;
   margin-top: auto;
@@ -89,7 +151,6 @@ body {
   color: white;
   text-decoration: none;
 }
-
 
 .toggle-btn {
   position: fixed;
@@ -117,96 +178,18 @@ body:not(.loaded) .main-content {
   transition: none !important;
 }
 
-
 body:not(.loaded) .toggle-btn {
   transition: none !important;
 }
 
-/** Tab Content */
-.tab-content {
-  display: none;
+.menu-item .dropdown-icon {
+  margin-left: auto;
+  transition: transform 0.3s ease;
 }
 
-.tab-content.active {
-  display: block;
+.menu-item.active .dropdown-icon {
+  transform: rotate(180deg);
 }
-
-.tabs {
-  display: flex;
-  border-bottom: 2px solid #ddd;
-  margin-bottom: 20px;
-}
-
-.tab-btn {
-  flex: 1;
-  text-align: center;
-  padding: 12px 0;
-  font-size: 16px;
-  font-weight: 600;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #555;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.tab-btn:hover {
-  color: #007bff;
-}
-
-.tab-btn.active {
-  color: #007bff;
-}
-
-.tab-btn.active::after {
-  content: "";
-  position: absolute;
-  left: 20%;
-  bottom: 0;
-  width: 60%;
-  height: 3px;
-  background: #007bff;
-  border-radius: 2px;
-}
-
-
-.tab-content table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-  margin-top: 10px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.tab-content th, 
-.tab-content td {
-  padding: 12px 14px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.tab-content th {
-  background: #f4f6f9;
-  font-weight: 600;
-  color: #333;
-}
-
-.tab-content tr:hover {
-  background: #f9f9f9;
-}
-
-
-.tab-content h2 {
-  font-size: 20px;
-  margin-bottom: 12px;
-  color: #444;
-  border-left: 4px solid var(--primary-color);
-  padding-left: 10px;
-}
-
 
 /*Main Content*/
 .main-content {
@@ -224,7 +207,6 @@ body:not(.loaded) .toggle-btn {
 .salarytitle {
   margin-left: 25px;
 }
-
 
 /* ADD POSITION */
 .container1 {
@@ -284,18 +266,17 @@ tr:hover {
 }
 
 #addPosition .form-group input {
-  width: 97%; 
+  width: 97%;
   max-width: 100%;
 }
 #addPosition .form-group select {
-  width: 99%; 
+  width: 99%;
   max-width: 100%;
 }
 .container1 .form-group button {
-  width: 95%; 
+  width: 95%;
   max-width: 100%;
 }
-
 
 /* POSITION LIST */
 .container2 {
@@ -307,42 +288,40 @@ tr:hover {
   margin-top: 20px;
 }
 #searchPosition {
-  width: 280px;              /* medyo mas malapad */
-  padding: 10px 15px;        /* loob spacing */
-  margin-bottom: 15px;       /* pagitan sa table */
+  width: 280px; /* medyo mas malapad */
+  padding: 10px 15px; /* loob spacing */
+  margin-bottom: 15px; /* pagitan sa table */
   font-size: 14px;
-  border: 1px solid #ccc;    /* subtle border */
-  border-radius: 25px;       /* rounded */
+  border: 1px solid #ccc; /* subtle border */
+  border-radius: 25px; /* rounded */
   outline: none;
   transition: 0.3s;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 #searchPosition:focus {
-  border-color: #007bff;     
-  
+  border-color: #007bff;
 }
-
 
 /* Delete button */
 .delete-btn {
-  background-color: #e74c3c;  
-  color: #fff;                 
-  border: none;               
-  padding: 6px 12px;           
-  border-radius: 6px;         
-  cursor: pointer;             
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
   font-size: 14px;
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .delete-btn:hover {
-  background-color: #c0392b;  
-  transform: scale(1.05);     
+  background-color: #c0392b;
+  transform: scale(1.05);
 }
 
 .delete-btn:active {
-  transform: scale(0.95);     
+  transform: scale(0.95);
 }
 
 /*Design for all inputs*/
@@ -366,13 +345,12 @@ select:focus {
   box-shadow: 0 0 4px rgba(52, 152, 219, 0.3);
 }
 
-
 /* ASSIGN SALARY */
 .container4 {
   background: #fff;
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin-top: 15px;
 }
 
@@ -428,14 +406,13 @@ select:focus {
 }
 
 #assignSalary .form-group input {
-  width: 97%; 
+  width: 97%;
   max-width: 100%;
 }
 #assignSalary .form-group select {
-  width: 99%; 
+  width: 99%;
   max-width: 100%;
 }
-
 
 /* SALARY LIST*/
 .container5 {
@@ -446,8 +423,6 @@ select:focus {
   width: 96%;
   margin-top: 20px;
 }
-
-
 
 label {
   display: block;
@@ -476,59 +451,3 @@ select:focus {
   outline: none;
   box-shadow: 0 0 4px rgba(52, 152, 219, 0.3);
 }
-
-
-/*sub-menu*/
-.submenu {
-  display: none;
-  flex-direction: column;
-  background: #34495e;
-  text-align: center;
-}
-
-.submenu.open {
-  max-height: 500px;
-}
-        
-.submenu-item {
-  padding: 12px 12px 12px 10px;
-  display: block;
-  color: #ccc;
-  text-decoration: none;
-  transition: all 0.3s;
-  border-left: 4px solid transparent;
-}
-
-.submenu-item:hover {
-  background:  rgba(255, 255, 255, 0.08);
-}
-
-.menu-item.active {
-  background-color:rgba(41, 128, 185, 0.2);
-  font-weight: 500;
-  
-}
-
-.menu-item .dropdown-icon {
-  margin-left: auto;
-  transition: transform 0.3s ease;
-}
-
-.menu-item.active .dropdown-icon {
-  transform: rotate(180deg);
-}
-
-.menu-item.active + .submenu {
-  display: flex;
-}
-
-.submenu-item.active {
-  background-color: rgba(41, 128, 185, 0.2);
-  color: white;
-  border-left: 4px solid #2980b9;
-}
-
-.dropdown-icon {
-            transition: transform 0.3s;
-        }
-
