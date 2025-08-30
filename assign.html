@@ -11,40 +11,66 @@
 <body>
 <div class="container">
   
+  <!-- Sidebar (hidden by default on mobile) -->
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <h2>Faculty Management</h2>
-      <p>Administrator Dashboard</p>
+        <h2>Faculty Management</h2>
+        <p>Administrator Dashboard</p>
     </div>
+    
     <div class="menu">
-      <a href="#" class="menu-item"><span class="menu-icon">📊</span><span class="menu-text">Dashboard</span></a>
-      <a href="facultyProfile.html" class="menu-item"><span class="menu-icon">👤</span><span class="menu-text">Faculty Profile</span></a>
-      <a href="#" class="menu-item"><span class="menu-icon">📚</span><span class="menu-text">Subject Load Tracker</span></a>
-      <a href="#" class="menu-item"><span class="menu-icon">📅</span><span class="menu-text">Schedule Assignment</span></a>
-      <a href="#" class="menu-item"><span class="menu-icon">✅</span><span class="menu-text">Attendance Monitoring</span></a>
-      <a href="#" class="menu-item"><span class="menu-icon">🏖️</span><span class="menu-text">Leave Application</span></a>
-
+        
+        <a href="../dashboard/facultyProfile.html" class="menu-item ">
+            <span class="menu-icon">👤</span>
+            <span class="menu-text">Faculty Profile</span>
+        </a>
+        <a href="../SubjectLoad/subjectloadtracker.html" class="menu-item">
+            <span class="menu-icon">📚</span>
+            <span class="menu-text">Subject Load Tracker</span>
+        </a>
+        <a href="../Schedule/sched_dash.html" class="menu-item">
+            <span class="menu-icon">📅</span>
+            <span class="menu-text">Schedule Assignment</span>
+        </a>
+        <a href="../attendance/attendance.html" class="menu-item ">
+          <span class="menu-icon">✅</span>
+          <span class="menu-text">Attendance Monitoring</span>
+      </a>
+        <a href="../Leave/leave.html" class="menu-item">
+            <span class="menu-icon">🏖️</span>
+            <span class="menu-text">Leave Application</span>
+        </a>
   <div class="menu-item" id="salary-menu">
     <span class="menu-icon">💰</span>
     <span class="menu-text">Salary Grade & Pay</span>
     <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
   </div>
   <div class="submenu" id="salary-submenu">
-    <a href="salary.html" class="submenu-item active">Add Position</a>
-    <a href="assign.html" class="submenu-item">Assign Salary</a>
+    <a href="salaryadd.html" class="submenu-item ">Add Position</a>
+    <a href="assign.html" class="submenu-item active">Assign Salary</a>
   </div>
-
-      <a href="#" class="menu-item"><span class="menu-icon">🏫</span><span class="menu-text">Teaching History</span></a>
-      <a href="#" class="menu-item"><span class="menu-icon">📝</span><span class="menu-text">Clearance System</span></a>
-      <a href="evaluation.html" class="menu-item"><span class="menu-icon">⭐</span><span class="menu-text">Evaluation Summary</span></a>
-      <a href="#" class="menu-item"><span class="menu-icon">📋</span><span class="menu-text">Faculty Directory</span></a>
-    </div>
+  <a href="../history/teachisto.html" class="menu-item">
+    <span class="menu-icon">🏫</span>
+    <span class="menu-text">Teaching History</span>
+</a>
+<a href="../clearance/Faculty Clearance Dashboard.html" class="menu-item">
+    <span class="menu-icon">📝</span>
+    <span class="menu-text">Clearance System</span>
+</a>
+<a href="../evaluation/evaluation.html" class="menu-item">
+    <span class="menu-icon">⭐</span>
+    <span class="menu-text">Evaluation Summary</span>
+</a>
+<a href="../directory/directory.html" class="menu-item">
+    <span class="menu-icon">📋</span>
+    <span class="menu-text">Faculty Directory</span>
+</a>
+</div>
     <div class="logout-container">
-      <a href="Login/Login.html" class="logout-btn"><span class="menu-icon">🚪</span><span class="menu-text">Log out</span></a>
+      <a href="../login/Login.html" class="logout-btn"><span class="menu-icon">🚪</span><span class="menu-text">Log out</span></a>
     </div>
   </div>
   <button id="toggleSidebar" class="toggle-btn">☰</button>
-
   
  <div class="main-content">
     <div class="salarytitle">
@@ -114,13 +140,5 @@
       </table>
     </div>
 </div>
-
-
-
-
-
-  
-
-
 </body>
 </html>
