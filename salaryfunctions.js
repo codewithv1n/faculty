@@ -1,3 +1,4 @@
+// toggle sidebar and logout functionality
 document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
   const toggleSidebarBtn = document.getElementById("toggleSidebar");
@@ -69,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/** Assign Salary */
+// Assign Salary
 document.addEventListener("DOMContentLoaded", () => {
   const assignSalaryForm = document.getElementById("assignSalaryForm");
   const facultySalaryBody = document.getElementById("facultySalaryBody");
@@ -128,8 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// sidebar dropdown functionality
 document.addEventListener("DOMContentLoaded", function () {
-  // Toggle Sidebar
   const toggleSidebar = document.getElementById("toggleSidebar");
   const sidebar = document.getElementById("sidebar");
 
@@ -138,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
       sidebar.classList.toggle("collapsed");
     });
   }
-  // Toggle salary submenu
+
   document.getElementById("salary-menu").addEventListener("click", function () {
     const submenu = document.getElementById("salary-submenu");
     const icon = this.querySelector(".dropdown-icon i");
