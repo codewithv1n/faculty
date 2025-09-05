@@ -216,3 +216,39 @@ th {
     flex-direction: column;
   }
 }
+
+/*dropdown menu*/
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.submenu.open {
+  max-height: 500px;
+}
+
+.submenu-item {
+  padding: 12px 20px 12px 60px;
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  transition: all 0.3s;
+  border-left: 4px solid transparent;
+}
+
+.submenu-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.submenu-item.active {
+  background-color: rgba(41, 128, 185, 0.2);
+  color: white;
+  border-left: 4px solid #2980b9;
+}
+.dropdown-icon {
+  margin-left: auto;
+  transition: transform 0.3s;
+}
