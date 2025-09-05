@@ -42,3 +42,30 @@ window.addEventListener("load", () => {
   document.querySelector(".main").classList.add("animated");
   document.querySelector(".toggle-btn").classList.add("animated");
 });
+
+// sidebar dropdown functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleSidebar = document.getElementById("toggleSidebar");
+  const sidebar = document.getElementById("sidebar");
+
+  if (toggleSidebar && sidebar) {
+    toggleSidebar.addEventListener("click", function () {
+      sidebar.classList.toggle("collapsed");
+    });
+  }
+
+  document.getElementById("salary-menu").addEventListener("click", function () {
+    const submenu = document.getElementById("salary-submenu");
+    const icon = this.querySelector(".dropdown-icon i");
+
+    submenu.classList.toggle("open");
+
+    if (submenu.classList.contains("open")) {
+      icon.classList.remove("fa-chevron-down");
+      icon.classList.add("fa-chevron-up");
+    } else {
+      icon.classList.remove("fa-chevron-up");
+      icon.classList.add("fa-chevron-down");
+    }
+  });
+});
