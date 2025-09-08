@@ -105,7 +105,7 @@ body {
 .main.animated {
   transition: margin-left 0.3s ease-in-out;
 }
-
+/*Toggle Button Styles*/
 .toggle-btn {
   position: fixed;
   top: 15px;
@@ -152,6 +152,7 @@ body {
   }
 }
 
+/*Main Content Styles*/
 .main {
   margin-left: 30px;
   padding: 20px;
