@@ -1,6 +1,6 @@
-// ===========================
+// ===============================
 // GLOBAL VARIABLES & DATA STORAGE
-// ===========================
+// ===============================
 let schedules = []; // SINGLE SOURCE OF TRUTH
 
 // Derived data arrays (regenerated from schedules)
@@ -225,9 +225,9 @@ function initializeElements() {
     document.querySelector(".toggle-btn");
 }
 
-// ===========================
+// ============================
 // SIDEBAR TOGGLE FUNCTIONALITY
-// ===========================
+// ============================
 function initializeSidebar() {
   // Clean up any duplicate toggle buttons
   const existingToggles = document.querySelectorAll(
