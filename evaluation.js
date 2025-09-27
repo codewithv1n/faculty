@@ -43,7 +43,7 @@ window.addEventListener("load", () => {
   document.querySelector(".toggle-btn").classList.add("animated");
 });
 
-// sidebar dropdown functionality
+// sidebar dropdown functionality.
 document.addEventListener("DOMContentLoaded", function () {
   const toggleSidebar = document.getElementById("toggleSidebar");
   const sidebar = document.getElementById("sidebar");
