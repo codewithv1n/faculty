@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faculty Management System - Schedule Sorting</title>
+    <link rel="stylesheet" href="whole.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <h2>Faculty Management</h2>
+          <p>Administrator Dashboard</p>
+        </div>
+
+        <div class="menu">
+          <a href="../dashboard/facultyProfile.html" class="menu-item">
+            <span class="menu-icon">👤</span>
+            <span class="menu-text">Faculty Profile</span>
+          </a>
+
+          <a href="../SubjectLoad/subjectloadtracker.html" class="menu-item">
+            <span class="menu-icon">📚</span>
+            <span class="menu-text">Subject Load Tracker</span>
+          </a>
+
+          <!-- Schedule Assignment with Dropdown -->
+          <div class="menu-item dropdown-menu active" id="schedule-menu">
+            <div class="menu-item-content">
+              <span class="menu-icon">📅</span>
+              <span class="menu-text">Schedule Assignment</span>
+            </div>
+            <span class="dropdown-icon">
+              <i class="fas fa-chevron-down"></i>
+            </span>
+          </div>
+
+          <div class="submenu open" id="schedule-submenu">
+            <a href="../Schedule/sched_dash.html" class="submenu-item"
+              >Dashboard</a
+            >
+            <a href="../Schedule/schedule_assignment.html" class="submenu-item"
+              >Assignments</a
+            >
+            <a href="../Schedule/sorting.html" class="submenu-item active"
+              >Sorting</a
+            >
+            <a href="../Schedule/timetable.html" class="submenu-item"
+              >Timetable</a
+            >
+          </div>
+
+          <!-- Attendance Monitoring with Dropdown -->
+          <a href="../attendance/attendance.html" class="menu-item">
+            <span class="menu-icon">✅</span>
+            <span class="menu-text">Attendance</span>
+          </a>
+
+          <a href="../Leave/leave.html" class="menu-item">
+            <span class="menu-icon">🏖️</span>
+            <span class="menu-text">Leave Application</span>
+          </a>
+
+          <a href="../salary/salary.html" class="menu-item">
+            <span class="menu-icon">💰</span>
+            <span class="menu-text">Salary Grade & Pay</span>
+          </a>
+
+          <a href="../history/teachisto.html" class="menu-item">
+            <span class="menu-icon">🏫</span>
+            <span class="menu-text">Teaching History</span>
+          </a>
+
+          <a href="../clearance/dashboard.html" class="menu-item">
+            <span class="menu-icon">📄</span>
+            <span class="menu-text">Clearance System</span>
+          </a>
+
+          <a href="../evaluation/evaluation.html" class="menu-item">
+            <span class="menu-icon">⭐</span>
+            <span class="menu-text">Evaluation Summary</span>
+          </a>
+
+          <a href="../directory/directory.html" class="menu-item">
+            <span class="menu-icon">📋</span>
+            <span class="menu-text">Faculty Directory</span>
+          </a>
+        </div>
+
+        <div class="logout-container">
+          <a href="../login/Login.html" class="logout-btn">
+            <span class="menu-icon">🚪</span>
+            <span class="menu-text">Log out</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <header class="main-header">
+          <button id="toggleSidebar" class="toggle-btn">☰</button>
+          <div class="header-titles">
+            <h1 id="pageTitle">Sorting Schedules</h1>
+            <p id="subNavTitle">
+              This section allows you to Sort, view, and manage schedules for
+              professors and Departments.
+            </p>
+          </div>
+        </header>
+
+        <!-- Filter Section -->
+        <div class="teacher-filter-container">
+          <div class="filter-grid">
+            <!-- Changed Department Filter Section -->
+            <div class="filter-group">
+              <label for="department-select">Department</label>
+              <select id="department-select" class="filter-select">
+                <option value="">Select Department</option>
+                <option value="IT Department">IT Department</option>
+                <option value="Computer Science Department">
+                  Computer Science Department
+                </option>
+                <option value="Mathematics Department">
+                  Mathematics Department
+                </option>
+                <option value="Physics Department">Physics Department</option>
+                <option value="Chemistry Department">
+                  Chemistry Department
+                </option>
+                <option value="Biology Department">Biology Department</option>
+                <option value="English Department">English Department</option>
+                <option value="History Department">History Department</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label for="professor-select">Filter by Professor</label>
+              <select id="professor-select" class="filter-select">
+                <option value="All Professors">All Professors</option>
+                <!-- Options will be populated by JavaScript -->
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label for="semester-select">Filter by Semester</label>
+              <select id="semester-select" class="filter-select">
+                <option value="All Semesters">All Semesters</option>
+                <option value="1st Semester">1st Semester</option>
+                <option value="2nd Semester">2nd Semester</option>
+                <option value="Summer">Summer</option>
+              </select>
+            </div>
+
+            <div class="filter-actions">
+              <button class="apply-filter-btn" id="applyFilterBtn">
+                Apply Filter
+              </button>
+              <button class="reset-filter-btn" id="resetFilterBtn">
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="card current-schedules-card">
+          <div class="card-header">
+            <h3>Filtered Schedules</h3>
+            <div class="results-count">
+              <span id="resultsCount">Showing all schedules</span>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="current-schedules-table" id="schedulesTable">
+              <thead>
+                <tr>
+                  <th>
+                    <button class="sort-btn" data-column="department">
+                      Department <i class="fas fa-sort"></i>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="sort-btn" data-column="professor">
+                      Professor <i class="fas fa-sort"></i>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="sort-btn" data-column="semester">
+                      Semester <i class="fas fa-sort"></i>
+                    </button>
+                  </th>
+                  <th>
+                    <button class="sort-btn" data-column="subject">
+                      Subject <i class="fas fa-sort"></i>
+                    </button>
+                  </th>
+                  <th>Course Code</th>
+                  <th>Section</th>
+                  <th>Room</th>
+                  <th>
+                    <button class="sort-btn" data-column="time">
+                      Time <i class="fas fa-sort"></i>
+                    </button>
+                  </th>
+                  <th>Days</th>
+                  <th>
+                    <button class="sort-btn" data-column="students">
+                      Students <i class="fas fa-sort"></i>
+                    </button>
+                  </th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="schedulesTableBody">
+                <!-- Table rows will be populated by JavaScript -->
+                <tr class="no-data-row">
+                  <td colspan="11">
+                    <div class="no-data-message">
+                      <i class="fas fa-calendar-times"></i>
+                      <p>No schedules found matching your criteria</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner" style="display: none">
+      <div class="spinner"></div>
+      <p>Loading schedules...</p>
+    </div>
+
+    <script src="whole.js"></script>
+  </body>
+</html>
