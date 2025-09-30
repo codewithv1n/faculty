@@ -27,6 +27,32 @@ window.addEventListener("load", function () {
   document.body.classList.add("loaded");
 });
 
+// Sidebar dropdown functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const salaryMenu = document.getElementById("salary-menu");
+  const submenu = document.getElementById("salary-submenu");
+
+  // Restore state
+  if (localStorage.getItem("salaryDropdownOpen") === "true") {
+    submenu.classList.add("open");
+    salaryMenu
+      .querySelector(".dropdown-icon i")
+      .classList.replace("fa-chevron-down", "fa-chevron-up");
+  }
+
+  // Toggle menu
+  salaryMenu.addEventListener("click", function () {
+    const icon = this.querySelector(".dropdown-icon i");
+    submenu.classList.toggle("open");
+
+    const isOpen = submenu.classList.contains("open");
+    localStorage.setItem("salaryDropdownOpen", isOpen);
+
+    icon.classList.toggle("fa-chevron-up", isOpen);
+    icon.classList.toggle("fa-chevron-down", !isOpen);
+  });
+});
+
 /** Position List */
 document.addEventListener("DOMContentLoaded", () => {
   const positionForm = document.getElementById("positionForm");
@@ -126,33 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
     transportAllowanceField.value = "₱1000";
     taxDeductionField.value = "";
     netPayField.value = "";
-  });
-});
-
-// sidebar dropdown functionality
-document.addEventListener("DOMContentLoaded", function () {
-  const toggleSidebar = document.getElementById("toggleSidebar");
-  const sidebar = document.getElementById("sidebar");
-
-  if (toggleSidebar && sidebar) {
-    toggleSidebar.addEventListener("click", function () {
-      sidebar.classList.toggle("collapsed");
-    });
-  }
-
-  document.getElementById("salary-menu").addEventListener("click", function () {
-    const submenu = document.getElementById("salary-submenu");
-    const icon = this.querySelector(".dropdown-icon i");
-
-    submenu.classList.toggle("open");
-
-    if (submenu.classList.contains("open")) {
-      icon.classList.remove("fa-chevron-down");
-      icon.classList.add("fa-chevron-up");
-    } else {
-      icon.classList.remove("fa-chevron-up");
-      icon.classList.add("fa-chevron-down");
-    }
   });
 });
 
