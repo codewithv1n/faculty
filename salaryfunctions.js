@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const salaryMenu = document.getElementById("salary-menu");
   const submenu = document.getElementById("salary-submenu");
 
-  // Restore state
   if (localStorage.getItem("salaryDropdownOpen") === "true") {
     submenu.classList.add("open");
     salaryMenu
@@ -40,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
       .classList.replace("fa-chevron-down", "fa-chevron-up");
   }
 
-  // Toggle menu
   salaryMenu.addEventListener("click", function () {
     const icon = this.querySelector(".dropdown-icon i");
     submenu.classList.toggle("open");
