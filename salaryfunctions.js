@@ -51,50 +51,71 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-/** Position List */
+// Position List (with LocalStorage)
 document.addEventListener("DOMContentLoaded", () => {
   const positionForm = document.getElementById("positionForm");
   const positionTableBody = document.getElementById("positionTableBody");
 
+  const savedPositions = JSON.parse(localStorage.getItem("positions")) || [];
+  savedPositions.forEach(addRowToTable);
+
   positionForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const position = document.getElementById("position").value;
-    const payLevel = document.getElementById("payLevel").value;
+    const position = document.getElementById("position").value.trim();
+    const payLevel = document.getElementById("payLevel").value.trim();
     const monthlySalary = parseFloat(
       document.getElementById("monthlySalary").value
     );
-    const employmentType = document.getElementById("employmentType").value;
+    const employmentType = document
+      .getElementById("employmentType")
+      .value.trim();
     const effectiveDate = document.getElementById("effectiveDate").value;
 
-    const newRow = document.createElement("tr");
-    newRow.innerHTML = `
-      <td>${position}</td>
-      <td>${payLevel}</td>
-      <td>₱${monthlySalary.toLocaleString()}</td>
-      <td>${employmentType}</td>
-      <td>${effectiveDate}</td>
-      <td>
-        <button type="button" class="delete-btn">Delete</button>
-      </td>
-    `;
-    positionTableBody.appendChild(newRow);
+    const newPosition = {
+      position,
+      payLevel,
+      monthlySalary,
+      employmentType,
+      effectiveDate,
+    };
+
+    addRowToTable(newPosition);
+
+    savedPositions.push(newPosition);
+    localStorage.setItem("positions", JSON.stringify(savedPositions));
 
     positionForm.reset();
   });
 
   positionTableBody.addEventListener("click", (e) => {
     const target = e.target;
-    const row = target.closest("tr");
-    if (!row) return;
-
     if (target.classList.contains("delete-btn")) {
+      const row = target.closest("tr");
+      const index = [...positionTableBody.children].indexOf(row);
+
+      savedPositions.splice(index, 1);
+      localStorage.setItem("positions", JSON.stringify(savedPositions));
+
       row.remove();
     }
   });
+
+  function addRowToTable(item) {
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+      <td>${item.position}</td>
+      <td>${item.payLevel}</td>
+      <td>₱${item.monthlySalary.toLocaleString()}</td>
+      <td>${item.employmentType}</td>
+      <td>${item.effectiveDate}</td>
+      <td><button type="button" class="delete-btn">Delete</button></td>
+    `;
+    positionTableBody.appendChild(newRow);
+  }
 });
 
-// Assign Salary
+// Assign Salary (with LocalStorage)
 document.addEventListener("DOMContentLoaded", () => {
   const assignSalaryForm = document.getElementById("assignSalaryForm");
   const facultySalaryBody = document.getElementById("facultySalaryBody");
@@ -104,8 +125,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const taxDeductionField = document.getElementById("taxDeduction");
   const netPayField = document.getElementById("netPay");
 
+  const savedSalaries =
+    JSON.parse(localStorage.getItem("assignedSalaries")) || [];
+  savedSalaries.forEach(addRowToTable);
+
   positionDropdown.addEventListener("change", function () {
-    const salary = parseFloat(this.options[this.selectedIndex].dataset.salary);
+    const salary = parseFloat(
+      this.options[this.selectedIndex].dataset.salary || 0
+    );
     const allowance = 1000;
     const tax = salary * 0.1;
     const netPay = salary + allowance - tax;
@@ -119,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
   assignSalaryForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const facultyName = document.getElementById("facultyName").value;
+    const facultyName = document.getElementById("facultyName").value.trim();
     const positionName =
       document.getElementById("positionDropdown").selectedOptions[0].text;
     const basicPay = basicPayField.value;
@@ -128,22 +155,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const netPay = netPayField.value;
     const effectiveDate = document.getElementById("effectiveDateAssign").value;
 
-    const newRow = document.createElement("tr");
-    newRow.innerHTML = `
-      <td>${facultyName}</td>
-      <td>${positionName}</td>
-      <td>${basicPay}</td>
-      <td>${allowance}</td>
-      <td>${tax}</td>
-      <td>${netPay}</td>
-      <td>${effectiveDate}</td>
-      <td> <button type="button" class="delete-btn">Delete</button></td>
-    `;
-    facultySalaryBody.appendChild(newRow);
+    const newSalary = {
+      facultyName,
+      positionName,
+      basicPay,
+      allowance,
+      tax,
+      netPay,
+      effectiveDate,
+    };
 
-    newRow.querySelector(".delete-btn").addEventListener("click", function () {
-      newRow.remove();
-    });
+    addRowToTable(newSalary);
+    savedSalaries.push(newSalary);
+    localStorage.setItem("assignedSalaries", JSON.stringify(savedSalaries));
 
     assignSalaryForm.reset();
     basicPayField.value = "";
@@ -151,6 +175,33 @@ document.addEventListener("DOMContentLoaded", () => {
     taxDeductionField.value = "";
     netPayField.value = "";
   });
+
+  facultySalaryBody.addEventListener("click", (e) => {
+    if (e.target.classList.contains("delete-btn")) {
+      const row = e.target.closest("tr");
+      const index = [...facultySalaryBody.children].indexOf(row);
+
+      savedSalaries.splice(index, 1);
+      localStorage.setItem("assignedSalaries", JSON.stringify(savedSalaries));
+
+      row.remove();
+    }
+  });
+
+  function addRowToTable(item) {
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+      <td>${item.facultyName}</td>
+      <td>${item.positionName}</td>
+      <td>${item.basicPay}</td>
+      <td>${item.allowance}</td>
+      <td>${item.tax}</td>
+      <td>${item.netPay}</td>
+      <td>${item.effectiveDate}</td>
+      <td><button type="button" class="delete-btn">Delete</button></td>
+    `;
+    facultySalaryBody.appendChild(newRow);
+  }
 });
 
 /** Position Search */
