@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>  
-
-<div class="container">
+    <div class="container">
+        <!-- Sidebar (hidden by default on mobile) -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h2>Faculty Management</h2>
@@ -18,58 +18,57 @@
         </div>
         
         <div class="menu">
-            <a href="#" class="menu-item">
-                <span class="menu-icon">📊</span>
-                <span class="menu-text">Dashboard</span>
-            </a>
-            <a href="facultyProfile.html" class="menu-item">
+           
+            <a href="../dashboard/facultyProfile.html" class="menu-item">
                 <span class="menu-icon">👤</span>
                 <span class="menu-text">Faculty Profile</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="../SubjectLoad/subjectloadtracker.html" class="menu-item">
                 <span class="menu-icon">📚</span>
                 <span class="menu-text">Subject Load Tracker</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="../Schedule/sched_dash.html" class="menu-item">
                 <span class="menu-icon">📅</span>
                 <span class="menu-text">Schedule Assignment</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="../attendance/attendance.html" class="menu-item">
                 <span class="menu-icon">✅</span>
                 <span class="menu-text">Attendance Monitoring</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="../Leave/leave.html" class="menu-item">
                 <span class="menu-icon">🏖️</span>
                 <span class="menu-text">Leave Application</span>
             </a>
-        <div class="menu-item" id="salary-menu">
-          <span class="menu-icon">💰</span>
-          <span class="menu-text">Salary Grade & Pay</span>
-          <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
-        </div>
-        <div class="submenu" id="salary-submenu">
-          <a href="salaryadd.html" class="submenu-item active">Add Position</a>
-          <a href="assign.html" class="submenu-item">Assign Salary</a>
-        </div>
-            <a href="#" class="menu-item">
+            <a href="../salary/salaryadd.html" class="menu-item">
+                <span class="menu-icon">💰</span>
+                <span class="menu-text">Salary Grade & Pay</span>
+            </a>
+            <a href="../history/teachisto.html" class="menu-item">
                 <span class="menu-icon">🏫</span>
                 <span class="menu-text">Teaching History</span>
             </a>
-            <a href="#" class="menu-item">
+            <a href="../clearance/Dashboard.html" class="menu-item">
                 <span class="menu-icon">📝</span>
                 <span class="menu-text">Clearance System</span>
             </a>
-            <a href="#" class="menu-item active">
-                <span class="menu-icon">⭐</span>
-                <span class="menu-text">Evaluation Summary</span>
-            </a>
-            <a href="#" class="menu-item">
+          <!-- Evaluation Section -->
+    <div class="menu-item" id="evaluation-menu">
+        <span class="menu-icon">⭐</span>
+        <span class="menu-text">Evaluation Summary</span>
+        <span class="dropdown-icon"><i class="fas fa-chevron-down"></i></span>
+    </div>
+    <div class="submenu" id="evaluation-submenu">
+     <a href="evalform.html" class="submenu-item">Add Evaluation</a>
+     <a href="evaluation.html" class="submenu-item">Summary</a>
+    </div>
+
+            <a href="../directory/directory.html" class="menu-item">
                 <span class="menu-icon">📋</span>
                 <span class="menu-text">Faculty Directory</span>
             </a>
         </div>
         <div class="logout-container">
-            <a href="Login/Login.html" class="logout-btn">
+            <a href="../login/Login.html" class="logout-btn">
                 <span class="menu-icon">🚪</span>
                 <span class="menu-text">Log out</span>
             </a>
@@ -77,29 +76,33 @@
     </div>
     <button id="toggleSidebar" class="toggle-btn">☰</button>
 
-
-
-    <!-- Main content area -->
 <div class="main" id="mainContent">
-  <h2>Evaluation Summary</h2>
-
-  <div class="summary">
-    <div class="card">
-      <div class="badge">⭐</div>
-      <h3>Average Score</h3>
-      <p id="avgScore">4.3 / 5</p>
-    </div>
-    <div class="card">
-      <div class="badge">🏆</div>
-      <h3>Top Faculty</h3>
-      <p id="topFaculty">Prof. Santos</p>
-    </div>
-    <div class="card">
-      <div class="badge">📅</div>
-      <h3>Semester</h3>
-      <p>1st Semester AY 2025</p>
-    </div>
+     <div class="header">
+                <h1>Evaluation Summary</h1>
+                <div class="user-info">
+                    <img src="../dashboard/470159754_1769189230288145_6835850226110481103_n.jpg" alt="Admin User">
+                    <span>Admin User</span>
+                </div>
+            </div>
+  
+ <div class="summary">
+  <div class="card">
+    <div class="badge">⭐</div>
+    <h3>Average Score</h3>
+    <p id="avgScore">4.3 / 5</p>
   </div>
+  <div class="card">
+    <div class="badge">🏆</div>
+    <h3>Top Faculty</h3>
+    <p id="topFaculty">Prof. Santos</p>
+  </div>
+  <div class="card">
+    <div class="badge">📅</div>
+    <h3>Semester</h3>
+    <p id="semesterDisplay">1st Semester AY 2025</p>
+  </div>
+</div>
+
 
   <h3>Faculty Ratings</h3>
   <table>
@@ -115,6 +118,7 @@
     <tbody id="facultyTable"></tbody>
   </table>
 </div>
+
 
 </body>
 
