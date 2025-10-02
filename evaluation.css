@@ -20,6 +20,73 @@ body {
   min-height: 100vh;
 }
 
+.menu {
+  padding: 10px 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-item.active {
+  background-color: var(--primary-color);
+  font-weight: 500;
+}
+
+.menu-icon {
+  margin-right: 10px;
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+}
+.dropdown-icon {
+  transition: transform 0.3s;
+  margin-left: auto;
+}
+.dropdown-icon.rotated {
+  transform: rotate(180deg);
+}
+
+/* Submenu Styles */
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.submenu.open {
+  max-height: 500px;
+}
+
+.submenu-item {
+  padding: 12px 20px 12px 60px;
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  transition: all 0.3s;
+  border-left: 4px solid transparent;
+}
+
+.submenu-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.submenu-item.active {
+  background-color: rgba(41, 128, 185, 0.2);
+  color: white;
+  border-left: 4px solid #2980b9;
+}
 /* Sidebar Styles */
 .sidebar {
   width: 250px;
@@ -33,6 +100,7 @@ body {
   margin-left: -250px;
 }
 
+/* Smooth only when .animated is added */
 .sidebar.animated {
   transition: margin-left 0.3s ease-in-out;
 }
@@ -97,15 +165,50 @@ body {
   margin-left: 250px;
   padding: 20px;
 }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+}
+.header h1 {
+  font-size: 1.8rem;
+  color: #2c3e50;
+}
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.user-profile img {
+  border-radius: 50%;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
 .sidebar:not(.open) ~ .main {
   margin-left: 0;
 }
 
+/* Smooth only when .animated is added */
 .main.animated {
   transition: margin-left 0.3s ease-in-out;
 }
-/*Toggle Button Styles*/
+
 .toggle-btn {
   position: fixed;
   top: 15px;
@@ -124,6 +227,7 @@ body {
   left: 15px;
 }
 
+/* Smooth only when .animated is added */
 .toggle-btn.animated {
   transition: left 0.3s ease-in-out;
 }
@@ -152,7 +256,6 @@ body {
   }
 }
 
-/*Main Content Styles*/
 .main {
   margin-left: 30px;
   padding: 20px;
@@ -195,7 +298,7 @@ td {
 }
 
 th {
-  background-color: #007bff;
+  background-color: #3498db;
   color: white;
 }
 
@@ -218,38 +321,171 @@ th {
   }
 }
 
-/*dropdown menu*/
-.submenu {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-  background-color: rgba(0, 0, 0, 0.2);
+/* === EVALUATION FORM === */
+.evaluation-form-page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.submenu.open {
-  max-height: 500px;
+.evaluation-form-container {
+  background-color: #fff;
+  padding: 35px 45px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 480px;
 }
 
-.submenu-item {
-  padding: 12px 20px 12px 60px;
-  display: block;
-  color: #ccc;
-  text-decoration: none;
-  transition: all 0.3s;
-  border-left: 4px solid transparent;
+.evaluation-form-container h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 25px;
 }
 
-.submenu-item:hover {
-  background-color: rgba(255, 255, 255, 0.08);
+/* === FORM FIELDS === */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #2c3e50;
+}
+
+input {
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  border: 1px solid #bdc3c7;
+  font-size: 15px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #3498db;
+}
+
+select {
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  border: 1px solid #bdc3c7;
+  font-size: 15px;
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+}
+
+select:focus {
+  border-color: #3498db;
+}
+
+/*Table Control*/
+.table-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0 10px;
+}
+
+.table-controls input,
+.table-controls select,
+.export-btn,
+.clear-btn {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.table-controls input {
+  width: 200px;
+}
+
+.export-btn,
+.clear-btn {
+  background-color: #2d89ef;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease-in-out;
+}
+
+.export-btn:hover {
+  background-color: #1e63b5;
+}
+
+.clear-btn {
+  background-color: #d9534f;
+  margin-left: 6px;
+}
+
+.clear-btn:hover {
+  background-color: #c9302c;
+}
+
+.highlight {
+  background-color: #fff8dc !important;
+  font-weight: 600;
+  color: #333;
+}
+
+/* === BUTTONS === */
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+button[type="submit"] {
+  background-color: #3498db;
+  color: white;
+  margin-bottom: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: #3498db;
+}
+
+#saveStay {
+  background-color: #3498db;
   color: white;
 }
 
-.submenu-item.active {
-  background-color: rgba(41, 128, 185, 0.2);
-  color: white;
-  border-left: 4px solid #2980b9;
+#saveStay:hover {
+  background-color: #2980b9;
 }
-.dropdown-icon {
-  margin-left: auto;
-  transition: transform 0.3s;
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #27ae60;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+  z-index: 1000;
+  font-weight: 500;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.toast.error {
+  background-color: #e74c3c;
 }
