@@ -75,7 +75,7 @@
  <div class="main-content">
     <div class="salarytitle">
       <h2>Salary Grade & Pay</h2>
-    </div>
+  </div>
 
   <div id="assignSalary" class="tab-content active">
     <div class="container4">
@@ -89,11 +89,11 @@
           <label for="positionDropdown">Select Position / Pay Level</label>
           <select id="positionDropdown" required>
             <option disabled selected>Select Position</option>
-            <option value="1" data-salary="15000">Utility / Janitor</option>
-            <option value="2" data-salary="25000">Security Guard / Maintenance</option>
-            <option value="3" data-salary="30000">Administrative Staff / Clerk</option>
-            <option value="4" data-salary="42000">College Instructor (Part-time/Intern)</option>
-            <option value="5" data-salary="52000">College Instructor (Full-time)</option>
+            <option value="1" data-salary="18000">Utility / Janitor</option>
+            <option value="2" data-salary="27000">Security Guard / Maintenance</option>
+            <option value="3" data-salary="33000">Administrative Staff / Clerk</option>
+            <option value="4" data-salary="47000">College Instructor (Part-time/Intern)</option>
+            <option value="5" data-salary="57000">College Instructor (Full-time)</option>
           </select>
         </div>
         <div class="form-group">
@@ -120,25 +120,27 @@
       </form>
    </div>
     
-    <div class="container5">
-      <h2>Faculty Salary List</h2>
-      <input type="text" id="facultySearch" placeholder="🔍 Search" style="margin-bottom:10px; padding:5px; width: 250px;">
-      <table>
-        <thead>
-          <tr>
-            <th>Faculty Name</th>
-            <th>Position</th>
-            <th>Basic Pay</th>
-            <th>Allowance</th>
-            <th>Tax Deduction</th>
-            <th>Net Pay</th>
-            <th>Effective Date</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="facultySalaryBody"></tbody>
-      </table>
-    </div>
+   <div class="container5">
+  <h2>Faculty Salary List</h2>
+  <input type="text" id="facultySearch" placeholder="🔍 Search" style="margin-bottom:10px; padding:5px; width:250px;">
+  <button id="exportSalaryCSV" style="margin-left:10px; padding:5px 10px;" class="export-btn">Export CSV</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Faculty Name</th>
+        <th>Position</th>
+        <th>Basic Pay</th>
+        <th>Allowance</th>
+        <th>Tax Deduction</th>
+        <th>Net Pay</th>
+        <th>Effective Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="facultySalaryBody"></tbody>
+  </table>
 </div>
+
 </body>
 </html>
