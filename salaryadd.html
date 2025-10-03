@@ -116,24 +116,25 @@
       </form>
     </div>
 
-    <div class="container2">
-      <h2>Position List</h2>
-      <input type="text" id="searchPosition" placeholder="🔍 Search" style="margin-bottom:10px; padding:5px; width: 250px;">
-      <table>
-        <thead>
-          <tr>
-            <th>Position</th>
-            <th>Pay Level</th>
-            <th>Monthly Salary</th>
-            <th>Employment Type</th>
-            <th>Effective Date</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="positionTableBody"></tbody>
-      </table>
-    </div>
-  </div>
+   <div class="container2">
+  <h2>Position List</h2>
+  <input type="text" id="searchPosition" placeholder="🔍 Search" style="margin-bottom:10px; padding:5px; width:250px;">
+  <button id="exportPositionCSV" style="margin-left:10px; padding:5px 10px;" class="export-btn">Export CSV</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Position</th>
+        <th>Pay Level</th>
+        <th>Monthly Salary</th>
+        <th>Employment Type</th>
+        <th>Effective Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="positionTableBody"></tbody>
+  </table>
+</div>
 
 
 </body>
