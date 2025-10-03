@@ -480,3 +480,20 @@ select:focus {
   outline: none;
   box-shadow: 0 0 4px rgba(52, 152, 219, 0.3);
 }
+
+/** Export Button */
+.export-btn {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.export-btn:hover {
+  background: #2980b9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
