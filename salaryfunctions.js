@@ -243,3 +243,67 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+/** ==========================
+ * EXPORT TO CSV (Reusable)
+ * ========================== */
+function exportTableToCSV(tableSelector, filename) {
+  const table = document.querySelector(tableSelector);
+  if (!table) return alert("Table not found!");
+
+  const rows = Array.from(table.querySelectorAll("tr"));
+  let csvContent = [];
+
+  rows.forEach((row, rowIndex) => {
+    const cols = Array.from(row.querySelectorAll("th, td"));
+    const filteredCols = cols.slice(0, -1); // skip "Action"
+
+    const rowData = filteredCols.map((col) => {
+      let text = col.textContent.trim();
+
+      // Remove peso signs and commas for numbers
+      if (text.startsWith("₱")) text = text.replace(/₱|,/g, "");
+
+      // Escape quotes
+      if (text.includes('"')) text = text.replace(/"/g, '""');
+
+      // Wrap text in quotes
+      return `"${text}"`;
+    });
+
+    csvContent.push(rowData.join(","));
+  });
+
+  // Add UTF-8 BOM for Excel compatibility
+  const bom = "\uFEFF";
+  const csvBlob = new Blob([bom + csvContent.join("\r\n")], {
+    type: "text/csv;charset=utf-8;",
+  });
+
+  const url = URL.createObjectURL(csvBlob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// 🔹 Position List Export Button
+document.addEventListener("DOMContentLoaded", () => {
+  const exportPositionBtn = document.getElementById("exportPositionCSV");
+  if (exportPositionBtn) {
+    exportPositionBtn.addEventListener("click", () => {
+      exportTableToCSV(".container2 table", "position_list.csv");
+    });
+  }
+});
+
+// 🔹 Faculty Salary List Export Button
+document.addEventListener("DOMContentLoaded", () => {
+  const exportSalaryBtn = document.getElementById("exportSalaryCSV");
+  if (exportSalaryBtn) {
+    exportSalaryBtn.addEventListener("click", () => {
+      exportTableToCSV(".container5 table", "faculty_salary_list.csv");
+    });
+  }
+});
