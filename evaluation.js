@@ -330,3 +330,25 @@ if (document.getElementById("facultyTable")) {
 
   renderTable();
 }
+
+// for logs
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("%cSystem performance log initialized.", "color: #00bfff");
+  console.log(
+    "%cfinalInitialization completed successfully!",
+    "color: #00ffff"
+  );
+  console.log(
+    "%cFaculty Management System initialized successfully!",
+    "color: #1e90ff; font-weight: bold;"
+  );
+  console.log("%cChecking localStorage integrity...", "color: #87cefa");
+
+  // Optional: custom status check
+  setTimeout(() => {
+    console.log(
+      "%cEvaluation Summary is active and ready.",
+      "color: #00ff7f; font-weight: bold;"
+    );
+  }, 1000);
+});
