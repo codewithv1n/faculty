@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleSidebarBtn = document.getElementById("toggleSidebar");
   const logoutBtn = document.querySelector(".logout-btn");
 
-  if (sidebar) sidebar.classList.add("open");
+  sidebar.classList.add("open");
 
   if (toggleSidebarBtn && sidebar) {
     toggleSidebarBtn.addEventListener("click", () => {
@@ -32,12 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const salaryMenu = document.getElementById("salary-menu");
   const submenu = document.getElementById("salary-submenu");
 
-  if (!salaryMenu || !submenu) return;
-
   if (localStorage.getItem("salaryDropdownOpen") === "true") {
     submenu.classList.add("open");
-    const icon = salaryMenu.querySelector(".dropdown-icon i");
-    if (icon) icon.classList.replace("fa-chevron-down", "fa-chevron-up");
+    salaryMenu
+      .querySelector(".dropdown-icon i")
+      .classList.replace("fa-chevron-down", "fa-chevron-up");
   }
 
   salaryMenu.addEventListener("click", function () {
@@ -47,20 +46,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const isOpen = submenu.classList.contains("open");
     localStorage.setItem("salaryDropdownOpen", isOpen);
 
-    if (icon) {
-      icon.classList.toggle("fa-chevron-up", isOpen);
-      icon.classList.toggle("fa-chevron-down", !isOpen);
-    }
+    icon.classList.toggle("fa-chevron-up", isOpen);
+    icon.classList.toggle("fa-chevron-down", !isOpen);
   });
 });
 
-// ============================
 // Position List (with LocalStorage)
-// ============================
 document.addEventListener("DOMContentLoaded", () => {
   const positionForm = document.getElementById("positionForm");
   const positionTableBody = document.getElementById("positionTableBody");
-  if (!positionForm || !positionTableBody) return;
 
   const savedPositions = JSON.parse(localStorage.getItem("positions")) || [];
   savedPositions.forEach(addRowToTable);
@@ -121,9 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ============================
 // Assign Salary (with LocalStorage)
-// ============================
 document.addEventListener("DOMContentLoaded", () => {
   const assignSalaryForm = document.getElementById("assignSalaryForm");
   const facultySalaryBody = document.getElementById("facultySalaryBody");
@@ -132,17 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const transportAllowanceField = document.getElementById("transportAllowance");
   const taxDeductionField = document.getElementById("taxDeduction");
   const netPayField = document.getElementById("netPay");
-
-  if (
-    !assignSalaryForm ||
-    !facultySalaryBody ||
-    !positionDropdown ||
-    !basicPayField ||
-    !transportAllowanceField ||
-    !taxDeductionField ||
-    !netPayField
-  )
-    return;
 
   const savedSalaries =
     JSON.parse(localStorage.getItem("assignedSalaries")) || [];
@@ -227,7 +208,6 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchPosition");
   const tableBody = document.getElementById("positionTableBody");
-  if (!searchInput || !tableBody) return;
 
   searchInput.addEventListener("keyup", function () {
     const filter = searchInput.value.toLowerCase();
@@ -235,7 +215,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     Array.from(rows).forEach((row) => {
       const cellsText = row.innerText.toLowerCase();
-      row.style.display = cellsText.includes(filter) ? "" : "none";
+      if (cellsText.includes(filter)) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
     });
   });
 });
@@ -244,7 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("facultySearch");
   const tableBody = document.getElementById("facultySalaryBody");
-  if (!searchInput || !tableBody) return;
 
   searchInput.addEventListener("keyup", function () {
     const filter = searchInput.value.toLowerCase();
@@ -252,93 +235,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     Array.from(rows).forEach((row) => {
       const cellsText = row.innerText.toLowerCase();
-      row.style.display = cellsText.includes(filter) ? "" : "none";
+      if (cellsText.includes(filter)) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
     });
   });
-});
-
-/** ==========================
- * EXPORT TO CSV (Reusable)
- * ========================== */
-function exportTableToCSV(tableSelector, filename) {
-  const table = document.querySelector(tableSelector);
-  if (!table) return alert("Table not found!");
-
-  const rows = Array.from(table.querySelectorAll("tr"));
-  let csvContent = [];
-
-  rows.forEach((row) => {
-    const cols = Array.from(row.querySelectorAll("th, td"));
-    const filteredCols = cols.slice(0, -1); // skip "Action"
-
-    const rowData = filteredCols.map((col) => {
-      let text = col.textContent.trim();
-
-      // Remove peso signs and commas for numbers
-      if (text.startsWith("₱")) text = text.replace(/₱|,/g, "");
-
-      // Escape quotes
-      if (text.includes('"')) text = text.replace(/"/g, '""');
-
-      // Wrap text in quotes
-      return `"${text}"`;
-    });
-
-    csvContent.push(rowData.join(","));
-  });
-
-  // Add UTF-8 BOM for Excel compatibility
-  const bom = "\uFEFF";
-  const csvBlob = new Blob([bom + csvContent.join("\r\n")], {
-    type: "text/csv;charset=utf-8;",
-  });
-
-  const url = URL.createObjectURL(csvBlob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-// 🔹 Position List Export Button
-document.addEventListener("DOMContentLoaded", () => {
-  const exportPositionBtn = document.getElementById("exportPositionCSV");
-  if (!exportPositionBtn) return;
-
-  exportPositionBtn.addEventListener("click", () => {
-    exportTableToCSV(".container2 table", "position_list.csv");
-  });
-});
-
-// 🔹 Faculty Salary List Export Button
-document.addEventListener("DOMContentLoaded", () => {
-  const exportSalaryBtn = document.getElementById("exportSalaryCSV");
-  if (!exportSalaryBtn) return;
-
-  exportSalaryBtn.addEventListener("click", () => {
-    exportTableToCSV(".container5 table", "faculty_salary_list.csv");
-  });
-});
-
-// for debug logs
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("%cSystem performance log initialized.", "color: #00bfff");
-  console.log(
-    "%cfinalInitialization completed successfully!",
-    "color: #00ffff"
-  );
-  console.log(
-    "%cFaculty Management System initialized successfully!",
-    "color: #1e90ff; font-weight: bold;"
-  );
-  console.log("%cChecking localStorage integrity...", "color: #87cefa");
-
-  // Optional: custom status check
-  setTimeout(() => {
-    console.log(
-      "%cSalary Grade & Pay is active and ready.",
-      "color: #00ff7f; font-weight: bold;"
-    );
-  }, 1000);
 });
