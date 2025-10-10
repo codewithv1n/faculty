@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="salaryfaculty.css">
+<title>Salary Details</title>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h2>Faculty Portal</h2>
+        <p>Welcome, Dr. Jasmine</p>
+    </div>
+    
+    <div class="menu">
+        <a href="../dashboard/facultyProfile.html" class="menu-item">
+            <span class="menu-icon">👤</span>
+            <span class="menu-text">My Profile</span>
+        </a>
+        <a href="../SubjectLoad/subjectloadtracker.html" class="menu-item">
+            <span class="menu-icon">📚</span>
+            <span class="menu-text">My Subjects</span>
+        </a>
+        <a href="../Schedule/sched_dash.html" class="menu-item">
+            <span class="menu-icon">📅</span>
+            <span class="menu-text">My Schedule</span>
+        </a>
+        <a href="../attendance/attendance.html" class="menu-item">
+            <span class="menu-icon">✅</span>
+            <span class="menu-text">Attendance</span>
+        </a>
+        <a href="../Leave/leave.html" class="menu-item">
+            <span class="menu-icon">🏖️</span>
+            <span class="menu-text">Leave Application</span>
+        </a>
+        <a href="../salary/salaryadd.html" class="menu-item active">
+            <span class="menu-icon">💰</span>
+            <span class="menu-text">Salary Details</span>
+        </a>
+        <a href="../history/teachisto.html" class="menu-item">
+            <span class="menu-icon">🏫</span>
+            <span class="menu-text">Teaching History</span>
+        </a>
+        <a href="../clearance/dashboard.html" class="menu-item">
+            <span class="menu-icon">📝</span>
+            <span class="menu-text">Clearance</span>
+        </a>
+        <a href="../evaluation/evaluation.html" class="menu-item">
+            <span class="menu-icon">⭐</span>
+            <span class="menu-text">Evaluations</span>
+        </a>
+        <a href="../directory/directory.html" class="menu-item">
+            <span class="menu-icon">📋</span>
+            <span class="menu-text">Faculty Directory</span>
+        </a>
+    </div>
+    
+    <div class="logout-container">
+        <a href="../login/Login.html" class="logout-btn">
+            <span class="menu-icon">🚪</span>
+            <span class="menu-text">Log out</span>
+        </a>
+    </div>
+</div>
+
+<!-- Toggle Button -->
+<button id="toggleSidebar" class="toggle-btn">☰</button>
+
+
+
+<div class="main-content">
+  <div class="salarytitle">
+    <h2>Salary Details</h2>
+  </div>
+
+  <div class="summary-container">
+    <div class="summary-box">
+      <h3>Current Month</h3>
+      <p id="currentMonthSalary">₱0</p>
+    </div>
+    <div class="summary-box">
+      <h3>Total Deductions</h3>
+      <p id="totalDeductions">₱0</p>
+    </div>
+    <div class="summary-box">
+      <h3>Net Salary</h3>
+      <p id="netSalary">₱0</p>
+    </div>
+  </div>
+
+  <div class="filter-container">
+    <select id="filterMonth">
+      <option value="">Filter by Month</option>
+      <option>January</option><option>February</option><option>March</option>
+      <option>April</option><option>May</option><option>June</option>
+      <option>July</option><option>August</option><option>September</option>
+      <option>October</option><option>November</option><option>December</option>
+    </select>
+    <select id="filterYear">
+      <option value="">Filter by Year</option>
+      <option>2024</option>
+      <option>2025</option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Month</th>
+        <th>Basic Pay</th>
+        <th>Allowances</th>
+        <th>Deductions</th>
+        <th>Net Pay</th>
+        <th>Download Payslip</th>
+      </tr>
+    </thead>
+    <tbody id="salaryTableBody"></tbody>
+  </table>
+</div>
+
+<script>
+  // Sample data
+  const salaryData = [
+    { month: "August", year: "2025", basic: 47000, allowance: 1000, deductions: 4700, net: 43300 },
+    { month: "September", year: "2025", basic: 47000, allowance: 1000, deductions: 4700, net: 43300 },
+    { month: "October", year: "2025", basic: 47000, allowance: 1000, deductions: 4700, net: 43300 }
+  ];
+
+  const salaryTableBody = document.getElementById("salaryTableBody");
+  const filterMonth = document.getElementById("filterMonth");
+  const filterYear = document.getElementById("filterYear");
+
+  function renderTable() {
+    salaryTableBody.innerHTML = "";
+
+    const monthFilter = filterMonth.value;
+    const yearFilter = filterYear.value;
+
+    const filteredData = salaryData.filter(item => {
+      return (monthFilter === "" || item.month === monthFilter) &&
+             (yearFilter === "" || item.year === yearFilter);
+    });
+
+    filteredData.forEach(item => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${item.month} ${item.year}</td>
+        <td>₱${item.basic.toLocaleString()}</td>
+        <td>₱${item.allowance.toLocaleString()}</td>
+        <td>₱${item.deductions.toLocaleString()}</td>
+        <td><strong>₱${item.net.toLocaleString()}</strong></td>
+        <td><button class="download-btn">Download PDF</button></td>
+      `;
+      salaryTableBody.appendChild(tr);
+    });
+
+    updateSummary(filteredData);
+  }
+
+  function updateSummary(data) {
+    if (data.length === 0) {
+      document.getElementById("currentMonthSalary").textContent = "₱0";
+      document.getElementById("totalDeductions").textContent = "₱0";
+      document.getElementById("netSalary").textContent = "₱0";
+      return;
+    }
+
+    const totalBasic = data.reduce((acc, curr) => acc + curr.basic, 0);
+    const totalDeduct = data.reduce((acc, curr) => acc + curr.deductions, 0);
+    const totalNet = data.reduce((acc, curr) => acc + curr.net, 0);
+
+    document.getElementById("currentMonthSalary").textContent = "₱" + totalBasic.toLocaleString();
+    document.getElementById("totalDeductions").textContent = "₱" + totalDeduct.toLocaleString();
+    document.getElementById("netSalary").textContent = "₱" + totalNet.toLocaleString();
+  }
+
+  filterMonth.addEventListener("change", renderTable);
+  filterYear.addEventListener("change", renderTable);
+
+  renderTable();
+</script>
+</body>
+</html>
