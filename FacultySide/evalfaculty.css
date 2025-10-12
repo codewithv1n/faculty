@@ -213,6 +213,10 @@ tr:hover {
     text-align: left;
 }
 
+h3{
+    padding-bottom: 10px;
+}
+
 /* ========== BUTTONS ========== */
 .btn {
     padding: 8px 14px;
