@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="salaryfaculty.css">
+<script src="salaryfaculty.js"defer></script>
 <title>Salary Details</title>
 </head>
 <body>
@@ -69,13 +70,16 @@
 <!-- Toggle Button -->
 <button id="toggleSidebar" class="toggle-btn">☰</button>
 
-
-
-<div class="main-content">
-  <div class="salarytitle">
-    <h2>Salary Details</h2>
+<div class="main" id="mainContent">
+  <div class="header">
+    <h1>Salary Details</h1>
+    <div class="user-info">
+      <img src="../dashboard/470159754_1769189230288145_6835850226110481103_n.jpg" alt="Faculty User">
+      <span id="facultyName">Dr. Jasmine Michaela Y. Espiritu</span>
+    </div>
   </div>
 
+<div class="main-content">
   <div class="summary-container">
     <div class="summary-box">
       <h3>Current Month</h3>
@@ -121,66 +125,5 @@
   </table>
 </div>
 
-<script>
-  // Sample data
-  const salaryData = [
-    { month: "August", year: "2025", basic: 47000, allowance: 1000, deductions: 4700, net: 43300 },
-    { month: "September", year: "2025", basic: 47000, allowance: 1000, deductions: 4700, net: 43300 },
-    { month: "October", year: "2025", basic: 47000, allowance: 1000, deductions: 4700, net: 43300 }
-  ];
-
-  const salaryTableBody = document.getElementById("salaryTableBody");
-  const filterMonth = document.getElementById("filterMonth");
-  const filterYear = document.getElementById("filterYear");
-
-  function renderTable() {
-    salaryTableBody.innerHTML = "";
-
-    const monthFilter = filterMonth.value;
-    const yearFilter = filterYear.value;
-
-    const filteredData = salaryData.filter(item => {
-      return (monthFilter === "" || item.month === monthFilter) &&
-             (yearFilter === "" || item.year === yearFilter);
-    });
-
-    filteredData.forEach(item => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${item.month} ${item.year}</td>
-        <td>₱${item.basic.toLocaleString()}</td>
-        <td>₱${item.allowance.toLocaleString()}</td>
-        <td>₱${item.deductions.toLocaleString()}</td>
-        <td><strong>₱${item.net.toLocaleString()}</strong></td>
-        <td><button class="download-btn">Download PDF</button></td>
-      `;
-      salaryTableBody.appendChild(tr);
-    });
-
-    updateSummary(filteredData);
-  }
-
-  function updateSummary(data) {
-    if (data.length === 0) {
-      document.getElementById("currentMonthSalary").textContent = "₱0";
-      document.getElementById("totalDeductions").textContent = "₱0";
-      document.getElementById("netSalary").textContent = "₱0";
-      return;
-    }
-
-    const totalBasic = data.reduce((acc, curr) => acc + curr.basic, 0);
-    const totalDeduct = data.reduce((acc, curr) => acc + curr.deductions, 0);
-    const totalNet = data.reduce((acc, curr) => acc + curr.net, 0);
-
-    document.getElementById("currentMonthSalary").textContent = "₱" + totalBasic.toLocaleString();
-    document.getElementById("totalDeductions").textContent = "₱" + totalDeduct.toLocaleString();
-    document.getElementById("netSalary").textContent = "₱" + totalNet.toLocaleString();
-  }
-
-  filterMonth.addEventListener("change", renderTable);
-  filterYear.addEventListener("change", renderTable);
-
-  renderTable();
-</script>
 </body>
 </html>
