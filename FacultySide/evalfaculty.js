@@ -21,39 +21,36 @@ document.addEventListener("DOMContentLoaded", function () {
       average: 4.6,
       category: "Excellent",
       details: [
-        { criteria: "Class Management", rating: "4.8", comments: "Very organized and engaging." },
-        { criteria: "Communication Skills", rating: "4.7", comments: "Explains topics clearly." },
-        { criteria: "Punctuality", rating: "4.5", comments: "Always on time." },
-        { criteria: "Subject Mastery", rating: "4.6", comments: "Shows deep knowledge." }
-      ]
+        { criteria: "Student Feedback", rating: "4.8" },
+        { criteria: "Peer Review", rating: "4.7" },
+        { criteria: "HOD Evaluation", rating: "4.5" },
+      ],
     },
     "2nd Semester 2025": {
       average: 4.4,
       category: "Very Good",
       details: [
-        { criteria: "Class Management", rating: "4.3", comments: "Good but can improve in pacing." },
-        { criteria: "Communication Skills", rating: "4.5", comments: "Clear explanations." },
-        { criteria: "Punctuality", rating: "4.6", comments: "Always early for classes." },
-        { criteria: "Subject Mastery", rating: "4.4", comments: "Excellent understanding." }
-      ]
+        { criteria: "Student Feedback", rating: "3.8" },
+        { criteria: "Peer Review", rating: "4,0" },
+        { criteria: "HOD Evaluation", rating: "3.5" },
+      ],
     },
     "1st Semester 2024": {
       average: 4.2,
       category: "Good",
       details: [
-        { criteria: "Class Management", rating: "4.0", comments: "Sometimes rushes discussions." },
-        { criteria: "Communication Skills", rating: "4.3", comments: "Communicates effectively." },
-        { criteria: "Punctuality", rating: "4.5", comments: "On time most of the time." },
-        { criteria: "Subject Mastery", rating: "4.1", comments: "Good knowledge of subject." }
-      ]
-    }
+        { criteria: "Student Feedback", rating: "3.5" },
+        { criteria: "Peer Review", rating: "4.7" },
+        { criteria: "HOD Evaluation", rating: "3.7" },
+      ],
+    },
   };
 
   // Function to render evaluation data
   function renderEvaluation(semester) {
     const data = evaluations[semester];
     if (!data) {
-      evaluationTable.innerHTML = "<tr><td colspan='3'>No data available.</td></tr>";
+      evaluationTable.innerHTML = "<tr><td colspan='2'>No data available.</td></tr>";
       semesterDisplay.textContent = "—";
       evalAverage.textContent = "—";
       ratingCategory.textContent = "—";
@@ -70,7 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
         <tr>
           <td>${row.criteria}</td>
           <td>${row.rating}</td>
-          <td>${row.comments}</td>
         </tr>
       `
       )
@@ -107,10 +103,10 @@ document.addEventListener("DOMContentLoaded", function () {
     doc.text(`Evaluation Average: ${average}`, 14, 46);
     doc.text(`Rating Category: ${category}`, 14, 54);
 
-    // Table
-    const tableData = data.map((d) => [d.criteria, d.rating, d.comments]);
+    // Table (Criteria + Rating only)
+    const tableData = data.map((d) => [d.criteria, d.rating]);
     doc.autoTable({
-      head: [["Criteria", "Rating", "Comments"]],
+      head: [["Criteria", "Rating"]],
       body: tableData,
       startY: 62,
       styles: { fontSize: 10 },
